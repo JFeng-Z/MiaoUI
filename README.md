@@ -182,10 +182,14 @@ void HAL_Display_Init(void)
 
 ## 效果
 
-**1. 列表界面**
+- **列表界面**
 <img src="images/list_menu.jpg" width="307" height="409">
-**2. 图标界面**
+
+- **图标界面**
 <img src="images/icon_menu.jpg" width="307" height="409">
+
+- **视频演示**
+https://b23.tv/pwNJOGH
 
 ## 后期规划
 
