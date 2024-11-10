@@ -66,7 +66,7 @@ extern "C" {
 // 为1时标题名称过长时自动滚动
 #define UI_TITLE_ROLL  1
 // 为1时使用FreeRTOS
-#define UI_USE_FREERTOS 0
+#define UI_USE_FREERTOS 1
 
 #if ( UI_USE_FREERTOS == 1 )
 #include "FreeRTOS.h"

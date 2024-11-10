@@ -27,7 +27,7 @@ ui_page_t Home_Page, System_Page, MPUTask_Page;
 /*item */
 ui_item_t HomeHead_Item, SystemHead_Item, System_Item, Image_Item, Github_Item, Bilibili_Item, Version_Item, MPUTask_Item, Wave_Item;
 ui_item_t MPUTaskHead_Item, MPUTaskLvel_Item, MPUTaskState_Item, SystemHeap_Item, Pitch_Item, Roll_Item, Yaw_Item;
-ui_item_t Contrast_Item, Power_Item, MenuColor_Item, CursorAni_Item;
+ui_item_t Contrast_Item, Power_Item, MenuColor_Item, CursorAni_Item, Test_Item;
 
 /**
  * 在此建立所需显示或更改的数据
@@ -217,10 +217,11 @@ void Create_MenuTree(ui_t *ui)
                 AddItem("[System]", UI_ITEM_RETURN, NULL, &SystemHead_Item, &System_Page, &Home_Page, NULL);
                 AddItem(" -Contrast", UI_ITEM_DATA, NULL, &Contrast_Item, &System_Page, NULL, NULL);
                 AddItem(" -Power", UI_ITEM_DATA, NULL, &Power_Item, &System_Page, NULL, NULL);   
+                AddItem(" -This is a testing program", UI_ITEM_DATA, NULL, &Test_Item, &System_Page, NULL, NULL);
                 AddItem(" -Menu Color", UI_ITEM_DATA, NULL, &MenuColor_Item, &System_Page, NULL, NULL);   
                 AddItem(" -Cursor Ani", UI_ITEM_DATA, NULL, &CursorAni_Item, &System_Page, NULL, NULL);
                 #if ( UI_USE_FREERTOS == 1 )     
-                AddItem(" -Menu Stack", UI_ITEM_DATA, NULL, &SystemHeap_Item, &System_Page, NULL, NULL);
+                AddItem(" -UI Stack", UI_ITEM_DATA, NULL, &SystemHeap_Item, &System_Page, NULL, NULL);
                 #endif
                 AddItem(" +MPU Task", UI_ITEM_PARENTS, NULL, &MPUTask_Item, &System_Page, &MPUTask_Page, NULL);
                     AddPage("[MPU Task]", &MPUTask_Page, UI_PAGE_TEXT);
@@ -234,7 +235,7 @@ void Create_MenuTree(ui_t *ui)
                         AddItem(" -Yaw", UI_ITEM_DATA, NULL, &Yaw_Item, &MPUTask_Page, NULL, NULL);
         AddItem(" -Image", UI_ITEM_LOOP_FUNCTION, logo_allArray[2], &Image_Item, &Home_Page, NULL, Show_Logo);
         AddItem(" -Github", UI_ITEM_WORD, logo_allArray[3], &Github_Item, &Home_Page, NULL, NULL);
-        AddItem(" -Bilibili", UI_ITEM_WORD, logo_allArray[4], &Bilibili_Item, &Home_Page, NULL, NULL);
+        AddItem(" -This is a testing program", UI_ITEM_WORD, logo_allArray[4], &Bilibili_Item, &Home_Page, NULL, NULL);
         AddItem(" -Version", UI_ITEM_ONCE_FUNCTION, logo_allArray[5], &Version_Item, &Home_Page, NULL, Show_Version);
         AddItem(" -Wave", UI_ITEM_WAVE, logo_allArray[6], &Wave_Item, &Home_Page, NULL, NULL);
 }

@@ -964,40 +964,45 @@ static void Process_App_Run(ui_t *ui, ui_item_t *item, UI_ACTION Action)
     switch (item->itemType) // 根据项目类型执行不同的操作
     {
     case UI_ITEM_DATA:
-        if(item->element->data->actionType == UI_DATA_ACTION_RO)
+        if(item->element != NULL && item->element->data != NULL)
         {
-            Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
-            break;
-        }
-        else
-        {
-            switch (item->element->data->dataType)
+            if(item->element->data->actionType == UI_DATA_ACTION_RO)
             {
-            case UI_DATA_INT:
-            case UI_DATA_FLOAT:
-                if (item->itemFunction == NULL)ParameterSetting_Widget(ui);
-                else (item->itemFunction)(ui); // 执行项目的函数
-                if(ui->action == UI_ACTION_ENTER)
-                {
-                    if(ui->nowItem->element->data->functionType == UI_DATA_FUNCTION_EXIT_EXECUTE)
-                    {
-                        if(ui->nowItem->element->data->function != NULL)ui->nowItem->element->data->function(ui);
-                        #if ( UI_USE_FREERTOS == 1 )
-                        if(ui->nowItem->element->data->dataRootTask != NULL)vTaskResume(*ui->nowItem->element->data->dataRootTask);
-                        #endif
-                    }
-                    Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
-                }
-                break;
-            case UI_DATA_SWITCH:
-                Switch_Widget(ui);
-                Change_UIState(ui, UI_ITEM_EXIT); // 改变菜单状态为函数退出
-                break;
-            default:
-                UI_LOG("Unknow data type\n");
+                Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
                 break;
             }
+            else
+            {
+                switch (item->element->data->dataType)
+                {
+                case UI_DATA_INT:
+                case UI_DATA_FLOAT:
+                    if (item->itemFunction == NULL)ParameterSetting_Widget(ui);
+                    else (item->itemFunction)(ui); // 执行项目的函数
+                    if(ui->action == UI_ACTION_ENTER)
+                    {
+                        if(ui->nowItem->element->data->functionType == UI_DATA_FUNCTION_EXIT_EXECUTE)
+                        {
+                            if(ui->nowItem->element->data->function != NULL)ui->nowItem->element->data->function(ui);
+                            #if ( UI_USE_FREERTOS == 1 )
+                            if(ui->nowItem->element->data->dataRootTask != NULL)vTaskResume(*ui->nowItem->element->data->dataRootTask);
+                            #endif
+                        }
+                        Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
+                    }
+                    break;
+                case UI_DATA_SWITCH:
+                    Switch_Widget(ui);
+                    Change_UIState(ui, UI_ITEM_EXIT); // 改变菜单状态为函数退出
+                    break;
+                default:
+                    UI_LOG("Unknow data type\n");
+                    break;
+                }
+            }
+            break;
         }
+        Change_UIState(ui, UI_ITEM_EXIT);
         break;
     case UI_ITEM_LOOP_FUNCTION:
         if (item->itemFunction != NULL)(item->itemFunction)(ui); // 执行项目的函数
