@@ -171,10 +171,13 @@ void HAL_Display_Init(void)
 
 ## 示例程序&PCB板
 - 开发环境：Keil MDK，立创EDA专业版
+- PCB：四层板
 - 主控芯片：STM32F103C8T6
-- 屏幕：SSD1306 128*64
+- 屏幕：OLED SSD1306 128*64
 - 按键：拨轮开关
 - I2C接口：硬件I2C2（SCL PB10，SDA PB11）
+- Flash：W25Q64
+- 陀螺仪&加速度计：MPU6050
 
 ## 效果
 
