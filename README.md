@@ -61,7 +61,7 @@ MiaoUI
 ```
 
 ## 使用
-1. 在 ui_conf.h 中修改 OLED 屏幕的参数，如屏幕宽度、高度、字体信息、图标大小、间距等。
+1. 移植 [u8g2](https://github.com/olikraus/u8g2) 库，在 ui_conf.h 中修改 OLED 屏幕的参数，如屏幕宽度、高度、字体信息、图标大小、间距等。
 2. 在 ui_conf.c 中建立你所需的菜单。示例如下：
 
     ```c

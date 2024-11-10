@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "custom.h": "c",
+        "parameter.h": "c"
+    }
+}
