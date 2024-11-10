@@ -15,20 +15,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef _CUSTOM_H
-#define _CUSTOM_H
+#ifndef _WAVE_H_
+#define _WAVE_H_
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "ui.h"
 #include "ui_conf.h"
 
-void Draw_Home(ui_t *ui);
-void Show_Version(ui_t *ui);
-void Show_Logo(ui_t *ui);
-void TaskLvel_Setting(ui_t *ui);
+void Wave_Widget(ui_t *ui);
 
 #ifdef __cplusplus
 }

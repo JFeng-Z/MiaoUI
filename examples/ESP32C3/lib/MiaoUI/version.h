@@ -15,20 +15,21 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef _CUSTOM_H
-#define _CUSTOM_H
+#ifndef __VERSION_H
+#define __VERSION_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "ui.h"
-#include "ui_conf.h"
+/* Firmware Version */
+#define VERSION_UI_NAME   "MiaoUI"
+#define VERSION        "v1.2"
+#define VERSION_AUTHOR_NAME     "JFeng-Z"
+#define VERSION_PROJECT_LINK    "github.com/JFeng-Z/MiaoUI"
 
-void Draw_Home(ui_t *ui);
-void Show_Version(ui_t *ui);
-void Show_Logo(ui_t *ui);
-void TaskLvel_Setting(ui_t *ui);
+/* Build Time */
+#define VERSION_BUILD_TIME    __DATE__ "\n" __TIME__
 
 #ifdef __cplusplus
 }

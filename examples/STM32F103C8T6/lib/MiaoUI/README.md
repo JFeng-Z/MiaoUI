@@ -153,7 +153,7 @@ MiaoUI
         AddItem(" -Github", UI_ITEM_WORD, logo_allArray[3], &Github_Item, &Home_Page, NULL, NULL);
     }
     ```
-3. 在indevDriver.c中添加你的按键驱动函数，按键至少需要三个（上、下、确认）。
+3. 在displayDirver.c中添加对应的 u8g2 api （具体可参照例程），在indevDriver.c中添加你的按键驱动函数，按键至少需要三个（上、下、确认）。
 4. 初始化你的屏幕和u8g2库。示例如下：
 ```c
 extern u8g2_t u8g2;
@@ -171,10 +171,13 @@ void HAL_Display_Init(void)
 
 ## 示例程序&PCB板
 - 开发环境：Keil MDK，立创EDA专业版
+- PCB：四层板
 - 主控芯片：STM32F103C8T6
-- 屏幕：SSD1306 128*64
+- 屏幕：OLED SSD1306 128*64
 - 按键：拨轮开关
 - I2C接口：硬件I2C2（SCL PB10，SDA PB11）
+- Flash：W25Q64
+- 陀螺仪&加速度计：MPU6050
 
 ## 效果
 

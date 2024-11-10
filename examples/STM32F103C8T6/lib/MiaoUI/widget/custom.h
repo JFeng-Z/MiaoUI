@@ -31,7 +31,7 @@ void Show_Logo(ui_t *ui);
 void TaskLvel_Setting(ui_t *ui);
 
 #ifdef __cplusplus
-extern "C" {
+}
 #endif
 
 #endif

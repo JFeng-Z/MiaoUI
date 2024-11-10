@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 extern "C" {
 #endif
 
-#include "ui.h"
+#include "core/ui.h"
 #include "ui_conf.h"
 
 void Draw_Home(ui_t *ui);

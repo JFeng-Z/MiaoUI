@@ -15,20 +15,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef _CUSTOM_H
-#define _CUSTOM_H
+#ifndef __HAL_BUTTON_H__
+#define __HAL_BUTTON_H__
+
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"{
 #endif
 
-#include "ui.h"
-#include "ui_conf.h"
+#include "stdint.h"
 
-void Draw_Home(ui_t *ui);
-void Show_Version(ui_t *ui);
-void Show_Logo(ui_t *ui);
-void TaskLvel_Setting(ui_t *ui);
+uint8_t key_scan(void);
 
 #ifdef __cplusplus
 }

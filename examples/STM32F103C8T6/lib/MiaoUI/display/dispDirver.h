@@ -50,7 +50,7 @@ uint16_t Disp_GetUTF8Width(const char *str);
 void Disp_UpdateDisplayArea(uint8_t tx, uint8_t ty, uint8_t tw, uint8_t th);
 
 #ifdef __cplusplus
-extern "C" {
+}
 #endif
 
 #endif

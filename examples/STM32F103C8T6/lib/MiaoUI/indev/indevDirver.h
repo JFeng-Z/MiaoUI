@@ -27,7 +27,7 @@ extern "C" {
 UI_ACTION indevScan(void);
 
 #ifdef __cplusplus
-extern "C" {
+}
 #endif
 
 #endif

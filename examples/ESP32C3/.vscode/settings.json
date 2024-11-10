@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "custom.h": "c",
+        "dispdirver.h": "c",
+        "u8g2lib.h": "c",
+        "image.h": "c",
+        "text.h": "c",
+        "wave.h": "c",
+        "stdint.h": "c",
+        "ui.h": "c",
+        "ui_conf.h": "c",
+        "indevdirver.h": "c"
+    }
+}

@@ -15,10 +15,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#include "dispDirver.h"
-// #include "u8g2.h"
-
-// u8g2_t u8g2;
+#include "display/dispDirver.h"
+#include "HAL_Display.h"
 
 /**
  * 初始化显示设备。
@@ -27,9 +25,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
  * @无参数
  * @无返回值
  */
-void diapInit(void)
+void dispInit(void)
 {
     // 初始化U8g2库，为OLED显示做准备
+    HAL_dispInit();
 }
 
 /**
@@ -45,7 +44,7 @@ void diapInit(void)
  */
 void Disp_ClearBuffer(void)
 {
-    // u8g2_ClearBuffer(&u8g2);  // 清除OLED显示缓冲区的具体实现，使用u8g2库提供的函数。
+    HAL_Disp_ClearBuffer();  // 清除OLED显示缓冲区的具体实现，使用u8g2库提供的函数。
 }
 
 /**
@@ -56,7 +55,7 @@ void Disp_ClearBuffer(void)
 void Disp_SendBuffer(void)
 {
     /* 将U8G2实例的缓冲区数据发送到OLED设备 */
-    // u8g2_SendBuffer(&u8g2);
+    HAL_Disp_SendBuffer();
 }
 
 /**
@@ -68,7 +67,7 @@ void Disp_SendBuffer(void)
  */
 void Disp_SetFont(const uint8_t  *font)
 {
-    // u8g2_SetFont(&u8g2, font); // 设置U8g2实例的字体
+    HAL_Disp_SetFont(font);
 }
 
 /**
@@ -83,7 +82,7 @@ void Disp_SetFont(const uint8_t  *font)
  */
 void Disp_DrawLine(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 {
-    // u8g2_DrawLine(&u8g2, x1, y1, x2, y2);
+    HAL_Disp_DrawLine(x1, y1, x2, y2);
 }
 
 /**
@@ -97,7 +96,7 @@ void Disp_DrawLine(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 uint16_t Disp_DrawStr(uint16_t x, uint16_t y, const char *str)
 {
     // 调用u8g2库的DrawStr函数，在指定位置绘制字符串
-    // return u8g2_DrawStr(&u8g2, x, y, str);
+    return HAL_Disp_DrawStr(x, y, str);
 }
 
 /**
@@ -109,7 +108,7 @@ uint16_t Disp_DrawStr(uint16_t x, uint16_t y, const char *str)
  */
 void Disp_SetDrawColor(void *color)
 {
-    // u8g2_SetDrawColor(&u8g2, *(uint8_t *)color); // 调用u8g2库的函数设置绘制颜色
+    HAL_Disp_SetDrawColor(color);
 }
 
 /**
@@ -124,7 +123,7 @@ void Disp_SetDrawColor(void *color)
  */
 void Disp_DrawFrame(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 {
-    // u8g2_DrawFrame(&u8g2, x, y, w, h);
+    HAL_Disp_DrawFrame(x, y, w, h);
 }
 
 /**
@@ -140,7 +139,7 @@ void Disp_DrawFrame(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
  */
 void Disp_DrawRFrame(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t r)
 {
-    // u8g2_DrawRFrame(&u8g2, x, y, w, h, r);
+    HAL_Disp_DrawRFrame(x, y, w, h, r);
 }
 
 /**
@@ -155,7 +154,7 @@ void Disp_DrawRFrame(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t r)
  */
 void Disp_DrawBox(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 {
-    // u8g2_DrawBox(&u8g2, x, y, w, h); // 调用u8g2库的绘制矩形函数
+    HAL_Disp_DrawBox(x, y, w, h);
 }
 
 /**
@@ -171,7 +170,7 @@ void Disp_DrawBox(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
  */
 void Disp_DrawRBox(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t r)
 {
-    // u8g2_DrawRBox(&u8g2, x, y, w, h, r);
+    HAL_Disp_DrawRBox(x, y, w, h, r);
 }
 
 /**
@@ -187,7 +186,7 @@ void Disp_DrawRBox(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t r)
  */
 void Disp_DrawXBMP(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint8_t *bitmap)
 {
-    // u8g2_DrawXBMP(&u8g2, x, y, w, h, bitmap);
+    HAL_Disp_DrawXBMP(x, y, w, h, bitmap);
 }
 
 /**
@@ -200,7 +199,7 @@ void Disp_DrawXBMP(uint16_t x, uint16_t y, uint16_t w, uint16_t h, const uint8_t
  */
 void Disp_SetContrast(ui_t *ui)
 {
-    // u8g2_SetContrast(&u8g2, *(uint8_t *)ui->nowItem->element->data->ptr); // 调用u8g2库函数设置对比度
+    HAL_Disp_SetContrast(ui);
 }
 
 /**
@@ -214,7 +213,7 @@ void Disp_SetContrast(ui_t *ui)
  */
 void Disp_SetPowerSave(ui_t *ui)
 {
-    // u8g2_SetPowerSave(&u8g2, *(uint8_t *)ui->nowItem->element->data->ptr); // 调用u8g2库的函数，设置OLED的电源节省模式状态
+    HAL_Disp_SetPowerSave(ui);
 }
 
 /**
@@ -226,7 +225,7 @@ void Disp_SetPowerSave(ui_t *ui)
  */
 uint8_t Disp_GetBufferTileHeight(void)
 {
-    // return u8g2_GetBufferTileHeight(&u8g2); // 调用u8g2库函数，获取当前OLED缓冲区的tile高度
+    return HAL_Disp_GetBufferTileHeight();
 }
 
 /**
@@ -240,7 +239,7 @@ uint8_t Disp_GetBufferTileHeight(void)
  */
 uint8_t Disp_GetBufferTileWidth(void)
 {
-    // return u8g2_GetBufferTileWidth(&u8g2);
+    return HAL_Disp_GetBufferTileWidth();
 }
 
 /**
@@ -254,35 +253,35 @@ uint8_t Disp_GetBufferTileWidth(void)
 uint8_t *Disp_GetBufferPtr(void)
 {
     // 调用u8g2库的函数获取显示缓冲区指针
-    // return u8g2_GetBufferPtr(&u8g2);
+    return HAL_Disp_GetBufferPtr();
 }
 
 void Disp_SetClipWindow(uint16_t clip_x0, uint16_t clip_y0, uint16_t clip_x1, uint16_t clip_y1)
 {
-    // u8g2_SetClipWindow(&u8g2, clip_x0, clip_y0, clip_x1, clip_y1);
+    HAL_Disp_SetClipWindow(clip_x0, clip_y0, clip_x1, clip_y1);
 }
 
 void Disp_SetMaxClipWindow(void)
 {
-    // u8g2_SetMaxClipWindow(&u8g2);
+    HAL_Disp_SetMaxClipWindow();
 }
 
 void Disp_SetBufferCurrTileRow(uint8_t row)
 {
-    // u8g2_SetBufferCurrTileRow(&u8g2, row);
+    HAL_Disp_SetBufferCurrTileRow(row);
 }
 
 uint16_t Disp_DrawUTF8(uint16_t x, uint16_t y, const char *str)
 {
-    // return u8g2_DrawUTF8(&u8g2, x, y, str);
+    return HAL_Disp_DrawUTF8(x, y, str);
 }
 
 uint16_t Disp_GetUTF8Width(const char *str)
 {
-    // return u8g2_GetUTF8Width(&u8g2, str);
+    return HAL_Disp_GetUTF8Width(str);
 }
 
 void Disp_UpdateDisplayArea(uint8_t tx, uint8_t ty, uint8_t tw, uint8_t th)
 {
-    // u8g2_UpdateDisplayArea(&u8g2, tx, ty, tw, th);
+    HAL_Disp_UpdateDisplayArea(tx, ty, tw, th);
 }

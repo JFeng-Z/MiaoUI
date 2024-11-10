@@ -15,23 +15,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef _CUSTOM_H
-#define _CUSTOM_H
+#include "indev/indevDirver.h"
+#include "HAL_Button.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include "ui.h"
-#include "ui_conf.h"
-
-void Draw_Home(ui_t *ui);
-void Show_Version(ui_t *ui);
-void Show_Logo(ui_t *ui);
-void TaskLvel_Setting(ui_t *ui);
-
-#ifdef __cplusplus
+UI_ACTION indevScan(void)
+{
+    /* 放入你的按键扫描代码 */
+    return (UI_ACTION)key_scan();
 }
-#endif
-
-#endif

@@ -25,7 +25,7 @@ extern "C" {
 #include "stdint.h"
 #include "ui_conf.h"
 
-void diapInit(void);
+void dispInit(void);
 void Disp_ClearBuffer(void);
 void Disp_SendBuffer(void);
 void Disp_SetFont(const uint8_t  *font);

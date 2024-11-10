@@ -15,14 +15,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#include "ui.h"
-#include "dispDirver.h"
-#include "indevDirver.h"
-#include "custom.h"
-#include "image.h"
-#include "parameter.h"
-#include "text.h"
-#include "wave.h"
+#include "core/ui.h"
+#include "display/dispDirver.h"
+#include "indev/indevDirver.h"
+#include "widget/custom.h"
+#include "images/image.h"
+#include "widget/parameter.h"
+#include "widget/text.h"
+#include "widget/wave.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
@@ -67,15 +67,20 @@ void AddItem(const char *name, UI_ITEM_TYPE type, const uint8_t *image, ui_item_
     // 初始化项目的基本信息
     item->itemName = name; // 设置项目名称
     item->itemType = type; // 设置项目类型
-    item->logo = image;
+
     // 如果页面类型为图像且没有指定图像，则使用预设图像
     if(localPage->type == UI_PAGE_ICON && image == NULL)
     {
         item->logo = presetsLogo;
         UI_LOG("%s : Image is null!\n", item->itemName);
     }
+    else if(localPage->type == UI_PAGE_ICON && image != NULL) 
+    item->logo = image;
+
     item->page.location = localPage; // 设置项目所在页面
-    item->itemFunction= function; // 设置项目关联的函数
+
+    if(function != NULL)
+    item->itemFunction = function; // 设置项目关联的函数
 
     // 初始化项目链接信息
     /* 初始化项目下一个项为NULL */
@@ -640,7 +645,7 @@ static void Draw_TextPage(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_ite
         temp_item->animationY = (int16_t )UI_Animation((float )temp_item->y, (float )temp_item->animationY, &ui->animation.textPage_ani);
         if(temp_item->animationY >= -UI_FONT_HIGHT && temp_item->animationY <= UI_VER_RES + UI_FONT_HIGHT) //超出屏幕范围则不绘制
         {
-            if(temp_item->itemType == UI_ITEM_DATA && temp_item->element->data->ptr != NULL)
+            if(temp_item->itemType == UI_ITEM_DATA && temp_item->element != NULL)
             {
                 char Data[20] = {0}; // 用于临时存储数据字符串
                 Disp_SetClipWindow(UI_DATA_X0, UI_DATA_Y0, UI_DATA_X1, UI_DATA_Y1);

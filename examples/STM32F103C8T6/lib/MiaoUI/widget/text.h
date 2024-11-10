@@ -18,7 +18,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #ifndef _TEXT_H_
 #define _TEXT_H_
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include "ui_conf.h"
 
