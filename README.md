@@ -170,15 +170,21 @@ void HAL_Display_Init(void)
 6. 在你的主函数中调用ui_loop函数，以保持界面运行。
 
 ## 示例程序&PCB板
-- 开发环境：Keil MDK，立创EDA专业版
-- PCB：四层板
-- 主控芯片：STM32F103C8T6
-- 屏幕：OLED SSD1306 128*64
-- 按键：拨轮开关
-- I2C接口：硬件I2C2（SCL PB10，SDA PB11）
-- Flash：W25Q64
-- 陀螺仪&加速度计：MPU6050
-### 注意：STM32例程中 OLED 的 I2C 地址为 0x7A，移植时需根据硬件自行修改
+- STM32F103C8T6:
+    - 开发环境：Keil MDK，立创EDA专业版
+    - PCB：四层板
+    - 屏幕：OLED SSD1306 128*64
+    - 按键：拨轮开关
+    - I2C接口：硬件I2C2（SCL PB10，SDA PB11）
+    - Flash：W25Q64
+    - 陀螺仪&加速度计：MPU6050
+    ### 注意：STM32例程中 OLED 的 I2C 地址为 0x7A，移植时需根据硬件自行修改
+    ### 原理图：
+    <img src="hardware/SCH_MiaoUI.png" width="595" height="422">
+- 合宙ESP32C3开发板:
+    - 开发环境：VSCODE PlatformIO
+    - 屏幕：OLED SSD1306 128*64
+    - 串口模拟按键：上：0x01 下：0x02 确认：0x03
 
 ## 效果
 
