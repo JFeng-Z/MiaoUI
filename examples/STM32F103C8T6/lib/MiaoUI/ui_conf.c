@@ -51,9 +51,9 @@ void Create_Parameter(ui_t *ui)
     Contrast_element.data = &Contrast_data;
     Create_element(&Contrast_Item, &Contrast_element);
 
-    static uint8_t power = true;
+    static uint8_t power_off = false;
     static ui_data_t Power_switch_data;
-    Power_switch_data.ptr = &power;
+    Power_switch_data.ptr = &power_off;
     Power_switch_data.function = Disp_SetPowerSave;
     Power_switch_data.dataType = UI_DATA_SWITCH;
     Power_switch_data.actionType = UI_DATA_ACTION_RW;
@@ -216,7 +216,7 @@ void Create_MenuTree(ui_t *ui)
             AddPage("[System]", &System_Page, UI_PAGE_TEXT);
                 AddItem("[System]", UI_ITEM_RETURN, NULL, &SystemHead_Item, &System_Page, &Home_Page, NULL);
                 AddItem(" -Contrast", UI_ITEM_DATA, NULL, &Contrast_Item, &System_Page, NULL, NULL);
-                AddItem(" -Power", UI_ITEM_DATA, NULL, &Power_Item, &System_Page, NULL, NULL);   
+                AddItem(" -Power off", UI_ITEM_DATA, NULL, &Power_Item, &System_Page, NULL, NULL);   
                 AddItem(" -This is a testing program", UI_ITEM_DATA, NULL, &Test_Item, &System_Page, NULL, NULL);
                 AddItem(" -Menu Color", UI_ITEM_DATA, NULL, &MenuColor_Item, &System_Page, NULL, NULL);   
                 AddItem(" -Cursor Ani", UI_ITEM_DATA, NULL, &CursorAni_Item, &System_Page, NULL, NULL);

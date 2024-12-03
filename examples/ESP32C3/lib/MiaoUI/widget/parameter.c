@@ -70,6 +70,7 @@ void ParameterSetting_Widget(ui_t *ui)
 
 void Switch_Widget(ui_t *ui)
 {
+    *(uint8_t *)ui->nowItem->element->data->ptr = ! *(uint8_t *)ui->nowItem->element->data->ptr; // 切换开关状态
     if(ui->nowItem->element->data->function != NULL)ui->nowItem->element->data->function(ui);
     #if ( UI_USE_FREERTOS == 1 )
     if(ui->nowItem->element->data->dataRootTask != NULL)
@@ -87,5 +88,4 @@ void Switch_Widget(ui_t *ui)
         }
     }
     #endif
-    *(uint8_t *)ui->nowItem->element->data->ptr = ! *(uint8_t *)ui->nowItem->element->data->ptr; // 切换开关状态
 }
