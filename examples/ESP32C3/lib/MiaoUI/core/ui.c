@@ -653,10 +653,10 @@ static void Draw_TextPage(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_ite
                 switch (temp_item->element->data->dataType)
                 {
                 case UI_DATA_INT:
-                    snprintf(Data, sizeof(UI_ITEM_DATA), "%d", *(int *)(temp_item->element->data->ptr));
+                    snprintf(Data, sizeof(Data), "%d", *(int *)(temp_item->element->data->ptr));
                     break;
                 case UI_DATA_FLOAT:
-                    snprintf(Data, sizeof(UI_ITEM_DATA), "%.2f", *(float *)(temp_item->element->data->ptr));
+                    snprintf(Data, sizeof(Data), "%.2f", *(float *)(temp_item->element->data->ptr));
                     break;
                 case UI_DATA_SWITCH:
                     Disp_DrawRFrame(UI_HOR_RES - 36, temp_item->animationY - UI_FONT_HIGHT, UI_FONT_HIGHT, UI_FONT_HIGHT, 2);
