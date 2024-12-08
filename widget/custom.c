@@ -52,12 +52,13 @@ void Draw_Home(ui_t *ui)
 {
     int16_t y = 128;
     uint8_t state = 0;
+    uint8_t color = 1;
     while (1)
     {
         if(indevScan() == UI_ACTION_ENTER)return;
 
         Disp_ClearBuffer();
-        Disp_SetDrawColor(0);
+        Disp_SetDrawColor(&color);
 
         switch (state)
         {
