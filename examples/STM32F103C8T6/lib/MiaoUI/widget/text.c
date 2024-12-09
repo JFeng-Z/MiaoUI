@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "text.h"
 #include "ui.h"
-#include "dispDirver.h"
+#include "dispDriver.h"
 #include "string.h"
 
 void Text_Widget(ui_t *ui) 

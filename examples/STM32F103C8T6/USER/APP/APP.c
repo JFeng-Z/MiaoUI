@@ -37,8 +37,8 @@ void APP_Init(void)
     APP_MiaoUi_Setup();
     APP_Buzzer_Setup();
     #if ( UI_USE_FREERTOS == 1 )
-    APP_TaskCreate();
     APP_QueueCreat();
+    APP_TaskCreate();
     vTaskStartScheduler();
     #endif
     #if ( UI_USE_FREERTOS == 0 )

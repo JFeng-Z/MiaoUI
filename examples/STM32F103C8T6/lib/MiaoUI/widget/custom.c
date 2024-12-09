@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "custom.h"
-#include "dispDirver.h"
-#include "indevDirver.h"
+#include "dispDriver.h"
+#include "indevDriver.h"
 #include <stdio.h>
 #include "image.h"
 #include "version.h"

@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "core/ui.h"
-#include "display/dispDirver.h"
-#include "indev/indevDirver.h"
+#include "display/dispDriver.h"
+#include "indev/indevDriver.h"
 #include "widget/custom.h"
 #include "images/image.h"
 #include "widget/parameter.h"

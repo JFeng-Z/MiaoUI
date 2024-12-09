@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "parameter.h"
 #include "stdio.h"
 #include "ui.h"
-#include "dispDirver.h"
+#include "dispDriver.h"
 
 void ParameterSetting_Widget(ui_t *ui)
 {

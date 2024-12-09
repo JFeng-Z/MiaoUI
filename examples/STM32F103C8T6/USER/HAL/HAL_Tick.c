@@ -1,6 +1,6 @@
 #include "HAL_Tick.h"
 #include "multi_button.h"
-#include "indevDirver.h"
+#include "indevDriver.h"
 #include "ui.h"
 #include "buzzer.h"
 

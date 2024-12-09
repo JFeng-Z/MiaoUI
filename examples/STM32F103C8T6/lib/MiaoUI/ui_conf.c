@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "ui_conf.h"
 #include "ui.h"
-#include "dispDirver.h"
+#include "dispDriver.h"
 #include "image.h"
 #include "custom.h"
 #include "version.h"

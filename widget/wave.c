@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "wave.h"
 #include "stdio.h"
-#include "dispDirver.h"
+#include "dispDriver.h"
 
 #if ( UI_USE_FREERTOS == 1 )
 #include "FreeRTOS.h"
