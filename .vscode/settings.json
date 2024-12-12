@@ -2,5 +2,6 @@
     "files.associations": {
         "indevdirver.h": "c",
         "custom.h": "c"
-    }
+    },
+    "marscode.chatLanguage": "cn"
 }

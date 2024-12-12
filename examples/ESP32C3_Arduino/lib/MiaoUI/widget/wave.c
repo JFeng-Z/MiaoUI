@@ -27,7 +27,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 // 横坐标轴位置
 #define AXIS_HOR_X0 UI_FONT_WIDTH*4
-#define AXIS_HOR_Y0 UI_VER_RES - 2*UI_FONT_HIGHT
+#define AXIS_HOR_Y0 (UI_VER_RES - 2*UI_FONT_HIGHT)
 #define AXIS_HOR_X1 UI_HOR_RES
 #define AXIS_HOR_Y1 AXIS_HOR_Y0
 // 纵坐标轴位置
