@@ -38,7 +38,9 @@ MiaoUI
 │    ├─ui.c
 │    └─ui.h
 ├─examples          # 示例代码
-|    └─STM32F103C8T6        
+|    ├─STM32F103C8T6
+|    └─ESP32C3_Arduino
+|    └─ESP32C3_ESP-IDF
 ├─fonts             # 字体文件
 |    ├─fonts.c
 |    └─fonts.h 
@@ -182,7 +184,10 @@ void HAL_Display_Init(void)
     ### 原理图：
     <img src="hardware/SCH_MiaoUI.png" width="595" height="422">
 - 合宙ESP32C3开发板:
-    - 开发环境：VSCODE PlatformIO
+    - Arduino
+        - 开发环境：VSCODE PlatformIO
+    - ESP-IDF
+        - 开发环境：VSCODE ESP-IDF
     - 屏幕：OLED SSD1306 128*64
     - 串口模拟按键：上：0x01 下：0x02 确认：0x03
 
