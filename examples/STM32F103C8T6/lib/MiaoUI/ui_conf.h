@@ -24,8 +24,8 @@
  *
  * Created on: 2025-02-08
  */
-#ifndef _MENUCONFIG_H_
-#define _MENUCONFIG_H_
+#ifndef _UI_CONF_H_
+#define _UI_CONF_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -37,7 +37,29 @@ extern "C" {
 #include "fonts.h"
 
 // 屏幕分辨率定义
-#define UI_HOR_RES     128 // 水平分辨率
+#define UI_HOR_RES     128
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 水平分辨率
 #define UI_VER_RES     64 // 垂直分辨率
 // 菜单字体定义
 #define UI_FONT   font_menu_main_h12w6

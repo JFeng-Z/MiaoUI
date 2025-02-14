@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "dispdriver.h": "c",
+        "u8g2.h": "c",
+        "ui_conf.h": "c",
+        "ui.h": "c",
+        "indevdriver.h": "c",
+        "custom.h": "c",
+        "test.h": "c",
+        "stdio.h": "c",
+        "image.h": "c",
+        "stdlib.h": "c"
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "d:\\MiaoUI\\examples\\SDL_Simulate\\bin",
+            "binaryPath": "d:\\MiaoUI\\examples\\SDL_Simulate\\bin\\main",
+            "binaryArgs": []
+        }
+    ]
+}

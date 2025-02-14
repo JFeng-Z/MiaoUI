@@ -24,8 +24,8 @@
  *
  * Created on: 2025-02-08
  */
-#ifndef __MENU_H__
-#define __MENU_H__
+#ifndef __UI_H__
+#define __UI_H__
 
 #ifdef __cplusplus
 extern "C" {

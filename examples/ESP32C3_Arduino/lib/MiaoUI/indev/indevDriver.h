@@ -24,8 +24,8 @@
  *
  * Created on: 2025-02-08
  */
-#ifndef _INDEVDIRVER_H
-#define _INDEVDIRVER_H
+#ifndef _INDEVDRIVER_H
+#define _INDEVDRIVER_H
 
 #ifdef __cplusplus
 extern "C" {

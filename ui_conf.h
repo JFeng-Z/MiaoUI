@@ -24,8 +24,8 @@
  *
  * Created on: 2025-02-08
  */
-#ifndef _MENUCONFIG_H_
-#define _MENUCONFIG_H_
+#ifndef _UI_CONF_H_
+#define _UI_CONF_H_
 
 #ifdef __cplusplus
 extern "C" {
