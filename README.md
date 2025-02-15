@@ -199,6 +199,9 @@ void HAL_Display_Init(void)
 - **图标界面**
 <img src="images/icon_menu.jpg" width="307" height="409">
 
+- **仿真**
+<img src="images/simulate.jpg" width="482" height="273">
+
 - **视频演示**
 https://b23.tv/pwNJOGH
 
