@@ -816,7 +816,7 @@ static void Draw_UI(ui_t *ui, ui_page_t *Page, ui_item_t *nowItem,ui_item_t *nex
     uint8_t color = ui->bgColor;
     // 开始绘制菜单界面
     Disp_SetDrawColor(&color); // 设置背景颜色
-    Disp_DrawBox(0, 0, 128, 64); // 绘制屏幕背景框
+    Disp_DrawBox(0, 0, UI_HOR_RES, UI_VER_RES); // 绘制屏幕背景框
     color = color^0x01;
     Disp_SetDrawColor(&color); // 设置绘制颜色为高亮或低亮
     Calculate_Coordinate(ui, Page, nowItem, next_item); // 绘制前计算最终坐标
