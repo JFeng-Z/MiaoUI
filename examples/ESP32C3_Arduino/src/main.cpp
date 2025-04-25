@@ -10,6 +10,7 @@ int Wave_TestData;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  button_init();
   dispInit();
   MiaoUi_Setup(&ui);
 }

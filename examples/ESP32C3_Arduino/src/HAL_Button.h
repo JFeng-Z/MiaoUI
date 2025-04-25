@@ -8,6 +8,16 @@ extern "C"{
 
 #include "stdint.h"
 
+typedef enum
+{
+    NONE,
+    NEXT,
+    PREV,
+    SELECT
+} BUTTON_EVENT;
+
+
+void button_init(void);
 uint8_t key_scan(void);
 
 #ifdef __cplusplus
