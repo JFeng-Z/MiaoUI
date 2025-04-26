@@ -177,6 +177,9 @@ void HAL_Display_Init(void)
     - PCB：四层板
     - 屏幕：OLED SSD1306 128*64
     - 按键：拨轮开关
+        - 上：PB12
+        - 下：PB14
+        - 确认：PB13
     - I2C接口：硬件I2C2（SCL PB10，SDA PB11）
     - Flash：W25Q64
     - 陀螺仪&加速度计：MPU6050
