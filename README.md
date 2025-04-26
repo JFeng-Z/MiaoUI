@@ -186,10 +186,14 @@ void HAL_Display_Init(void)
 - 合宙ESP32C3开发板:
     - Arduino
         - 开发环境：VSCODE PlatformIO
+        - 屏幕：OLED SSD1306 128*64
+        - 按键：上：PIN 3
+                下：PIN 18
+                确认：PIN 8
     - ESP-IDF
         - 开发环境：VSCODE ESP-IDF
-    - 屏幕：OLED SSD1306 128*64
-    - 串口模拟按键：上：0x01 下：0x02 确认：0x03
+        - 屏幕：OLED SSD1306 128*64
+        - 串口模拟按键：上：0x01 下：0x02 确认：0x03
 
 ## 效果
 
