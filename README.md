@@ -62,7 +62,25 @@ MiaoUI
 └─ README.md
 ```
 
-## 使用
+## 如何移植
+
+### keil
+
+下载软件包
+
+将 `core` 中的所有.c、`fonts` 中的所有.c、`display` 中的所有.c、`indev` 中的所有.c、`widget` 中的所有.c、`根目录`中的 `ui_conf.c` 。这些源码文件加入已有工程。
+
+将 `/core`、`/fonts`、`/display`、`/indev`、`/images`、`/widget`、以及这个软件包的根目录。这些路径都加入工程的 *includePath*。
+
+### cmake
+
+下载软件包
+
+使用类似 `add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/MiaoUI-master)` 将软件包的根路径作为子目录
+
+如同其他软件包一样使用 `target_link_libraries` 添加本包，名为 `miaoui`。
+
+## 如何使用
 1. 移植 [u8g2](https://github.com/olikraus/u8g2) 库，在 ui_conf.h 中修改 OLED 屏幕的参数，如屏幕宽度、高度、字体信息、图标大小、间距等。
 2. 在 ui_conf.c 中建立你所需的菜单。示例如下：
 
