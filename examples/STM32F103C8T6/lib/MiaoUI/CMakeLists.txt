@@ -20,6 +20,7 @@ target_include_directories(miaoui INTERFACE
     ${CMAKE_CURRENT_LIST_DIR}/images
     ${CMAKE_CURRENT_LIST_DIR}/indev
     ${CMAKE_CURRENT_LIST_DIR}/widget
+    ${CMAKE_CURRENT_LIST_DIR}
 )
 
 
@@ -30,6 +31,7 @@ target_sources(miaoui INTERFACE
     ${IMAGES_SRC}
     ${INDEV_SRC}
     ${WIDGET_SRC}
+    ${CMAKE_CURRENT_LIST_DIR}/ui_conf.c
 )
 
 if(CMAKE_C_STANDARD LESS 99)

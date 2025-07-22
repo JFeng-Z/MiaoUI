@@ -45,5 +45,16 @@
             "dan-c-underwood.arm",
             "marus25.cortex-debug"
         ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "CMake: Script debugging",
+                "type": "cmake",
+                "request": "launch",
+                "cmakeDebugType": "configure"
+            }
+        ]
     }
 }
