@@ -28,7 +28,8 @@
 #define _TEXT_H_
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #include "lib/MiaoUI/ui_conf.h"

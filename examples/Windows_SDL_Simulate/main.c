@@ -6,18 +6,17 @@
 #include "test.h"
 
 ui_t ui;
-int Wave_TestData;
+int  Wave_TestData;
 
-int main(void)
+int  main(void)
 {
-  diapInit();
-  MiaoUi_Setup(&ui);
-  test();
-  for (;;)
-  {
-    Wave_TestData = rand()%600;
-    ui_loop(&ui);
-  }
-  return 0;
+    diapInit( );
+    MiaoUi_Setup(&ui);
+    test( );
+    for(;;)
+    {
+        Wave_TestData = rand( ) % 600;
+        ui_loop(&ui);
+    }
+    return 0;
 }
-

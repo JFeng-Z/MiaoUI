@@ -37,15 +37,12 @@
 #include "string.h"
 #include "math.h"
 
-const uint8_t presetsLogo [] = {
-	0xff, 0xff, 0xff, 0x3f, 0xff, 0xc3, 0xff, 0x3f, 0xff, 0x00, 0xfc, 0x3f, 0x3f, 0x00, 0xf0, 0x3f, 
-	0x1f, 0x00, 0xe0, 0x3f, 0x0f, 0x00, 0x80, 0x3f, 0x07, 0x00, 0x00, 0x3f, 0x03, 0x7e, 0x00, 0x3e, 
-	0x01, 0x7e, 0x00, 0x3c, 0x01, 0x7f, 0x00, 0x38, 0x01, 0x0c, 0x00, 0x38, 0x01, 0xe3, 0x00, 0x30, 
-	0x01, 0xc3, 0x00, 0x30, 0xa1, 0xc7, 0x01, 0x30, 0xe3, 0xf7, 0x03, 0x38, 0xcb, 0xf3, 0x03, 0x38, 
-	0x03, 0xc0, 0x60, 0x3c, 0x43, 0x00, 0x41, 0x3e, 0x47, 0x80, 0x41, 0x3e, 0xc7, 0xc0, 0x01, 0x38, 
-	0xe7, 0xe1, 0x23, 0x30, 0xef, 0xff, 0x1f, 0x20, 0x8f, 0xff, 0x0f, 0x20, 0x0f, 0x03, 0x00, 0x00, 
-	0x1f, 0x00, 0x00, 0x20, 0x0f, 0x00, 0x00, 0x20, 0x0f, 0x00, 0x08, 0x20, 0x07, 0x00, 0x00, 0x30, 
-	0x07, 0x00, 0x00, 0x38, 0xff, 0xff, 0xff, 0x3f
+const uint8_t presetsLogo[] = {
+
+    0xff, 0xff, 0xff, 0x3f, 0xff, 0xc3, 0xff, 0x3f, 0xff, 0x00, 0xfc, 0x3f, 0x3f, 0x00, 0xf0, 0x3f, 0x1f, 0x00, 0xe0, 0x3f, 0x0f, 0x00, 0x80, 0x3f, 0x07, 0x00, 0x00, 0x3f, 0x03, 0x7e, 0x00, 0x3e, 0x01, 0x7e, 0x00, 0x3c, 0x01, 0x7f, 0x00, 0x38, 0x01,
+    0x0c, 0x00, 0x38, 0x01, 0xe3, 0x00, 0x30, 0x01, 0xc3, 0x00, 0x30, 0xa1, 0xc7, 0x01, 0x30, 0xe3, 0xf7, 0x03, 0x38, 0xcb, 0xf3, 0x03, 0x38, 0x03, 0xc0, 0x60, 0x3c, 0x43, 0x00, 0x41, 0x3e, 0x47, 0x80, 0x41, 0x3e, 0xc7, 0xc0, 0x01, 0x38, 0xe7, 0xe1,
+    0x23, 0x30, 0xef, 0xff, 0x1f, 0x20, 0x8f, 0xff, 0x0f, 0x20, 0x0f, 0x03, 0x00, 0x00, 0x1f, 0x00, 0x00, 0x20, 0x0f, 0x00, 0x00, 0x20, 0x0f, 0x00, 0x08, 0x20, 0x07, 0x00, 0x00, 0x30, 0x07, 0x00, 0x00, 0x38, 0xff, 0xff, 0xff, 0x3f
+
 };
 
 /**
@@ -67,7 +64,8 @@ void AddItem(const char *name, UI_ITEM_TYPE type, const uint8_t *image, ui_item_
 {
     // 检查输入参数的有效性
     // 参数检验
-    if (!name || !item || !localPage) {
+    if(!name || !item || !localPage)
+    {
         UI_LOG("Invalid parameter(s)\n");
         return; // 早期返回以避免进一步错误
     }
@@ -83,13 +81,13 @@ void AddItem(const char *name, UI_ITEM_TYPE type, const uint8_t *image, ui_item_
         item->logo = presetsLogo;
         UI_LOG("%s : Image is null!\n", item->itemName);
     }
-    else if(localPage->type == UI_PAGE_ICON && image != NULL) 
-    item->logo = image;
+    else if(localPage->type == UI_PAGE_ICON && image != NULL)
+        item->logo = image;
 
     item->page.location = localPage; // 设置项目所在页面
 
     if(function != NULL)
-    item->itemFunction = function; // 设置项目关联的函数
+        item->itemFunction = function; // 设置项目关联的函数
 
     // 初始化项目链接信息
     /* 初始化项目下一个项为NULL */
@@ -97,7 +95,7 @@ void AddItem(const char *name, UI_ITEM_TYPE type, const uint8_t *image, ui_item_
 
     // 设置跳转页面的父项目为当前项目
     /* 设置跳转页面的父级项目 */
-    if (nextPage != NULL)
+    if(nextPage != NULL)
         nextPage->item.parent = item;
     else // 如果没有下一个页面，则设置为当前页面
         nextPage = localPage;
@@ -105,28 +103,28 @@ void AddItem(const char *name, UI_ITEM_TYPE type, const uint8_t *image, ui_item_
 
     // 如果页面为空，则初始化项目链表
     /* 链式结构创建项目 */
-    if (localPage->item.head == NULL) // 如果是首个项目
+    if(localPage->item.head == NULL) // 如果是首个项目
     {
         // 初始化项目链表头部和尾部
-        item->lastItem = item;
+        item->lastItem       = item;
         localPage->item.head = item;
         localPage->item.tail = item;
-        localPage->length = 0; // 初始化项目计数
+        localPage->length    = 0; // 初始化项目计数
     }
     else // 如果不是首个项目
     {
         // 将新项目连接到链表尾部
         // 连接新项目到链表尾部
-        item->lastItem = localPage->item.tail;                // 新项目上一个项指向当前尾项目
-        localPage->item.tail->nextItem = item;                // 尾项目下一个项指向新项目
-        localPage->item.tail = localPage->item.tail->nextItem; // 更新尾项目为新项目
-        localPage->length++; // 项目计数加一
+        item->lastItem                 = localPage->item.tail;           // 新项目上一个项指向当前尾项目
+        localPage->item.tail->nextItem = item;                           // 尾项目下一个项指向新项目
+        localPage->item.tail           = localPage->item.tail->nextItem; // 更新尾项目为新项目
+        localPage->length++;                                             // 项目计数加一
     }
     // 设置项目ID为当前页面项目数量
     item->id = localPage->length; // 设置项目ID为当前页面项目计数
     // 关联页面的头尾项目互相指向，用于快速遍历
     // 关联页面的头尾项目互相指向，用于快速遍历
-    localPage->item.tail->nextItem = localPage->item.head;  
+    localPage->item.tail->nextItem = localPage->item.head;
     localPage->item.head->lastItem = localPage->item.tail;
 }
 
@@ -140,17 +138,17 @@ void AddItem(const char *name, UI_ITEM_TYPE type, const uint8_t *image, ui_item_
 void AddPage(const char *name, ui_page_t *page, UI_PAGE_TYPE type)
 {
     // 初始化新页面的基本信息
-    page->pageName = name;
+    page->pageName  = name;
     page->item.head = NULL;
     page->item.tail = NULL;
     page->pageState = UI_PAGE_STATIC;
-    page->type = type;
+    page->type      = type;
 }
 
 float UI_Animation(float targrt, float now, ui_animation_param_t *obj)
 {
     float x = now;
-    
+
     // 计算误差
     obj->error = targrt - x;
     // 积分环节，累加误差
@@ -160,7 +158,7 @@ float UI_Animation(float targrt, float now, ui_animation_param_t *obj)
 
     // 计算控制量
     float velocity = obj->kp * obj->error + obj->ki * obj->sum_error + obj->kd * delta_error;
-    
+
     // 更新状态
     x += velocity;
     obj->last_error = obj->error;
@@ -181,10 +179,11 @@ float UI_Animation(float targrt, float now, ui_animation_param_t *obj)
  * 当t小于总时长的一半时，动画以圆形函数的减速形式进行，反之则以加速形式进行。
  * 这种方式使得动画在开始和结束时都比较平滑，适用于需要平滑过渡的动画场景。
  */
-float easeInOutCirc(float t, float b, float c, float d) 
+float easeInOutCirc(float t, float b, float c, float d)
 {
     // 当前时间归一化至动画周期的一半，如果小于1，则处于动画的前半段
-    if ((t /= d / 2) < 1) return -c / 2 * (sqrtf(1 - t * t) - 1) + b;
+    if((t /= d / 2) < 1)
+        return -c / 2 * (sqrtf(1 - t * t) - 1) + b;
     // 如果大于等于1，则处于动画的后半段，计算方式有所不同
     return c / 2 * (sqrtf(1 - (t -= 2) * t) + 1) + b;
 }
@@ -197,24 +196,24 @@ static void Change_UIState(ui_t *ui, UI_STATE state)
 static void Cursor_AnimationParam_Init(ui_t *ui, ui_item_t *next_item)
 {
     ui->nowItem->page.location->cursorLastColumn = ui->cursor.targrtColumn;
-    ui->nowItem->page.location->cursorLastRow = ui->cursor.targrtRow;
-    ui->nowItem->page.location->cursorLastWide = ui->cursor.targrtWide;
-    ui->cursor.targrtColumn = next_item->x;
-    ui->cursor.targrtRow = next_item->y - UI_FONT_HIGHT;
+    ui->nowItem->page.location->cursorLastRow    = ui->cursor.targrtRow;
+    ui->nowItem->page.location->cursorLastWide   = ui->cursor.targrtWide;
+    ui->cursor.targrtColumn                      = next_item->x;
+    ui->cursor.targrtRow                         = next_item->y - UI_FONT_HIGHT;
 }
 
 static void Cursor_AnimationParam_Change(ui_t *ui)
 {
     ui->cursor.targrtColumn = ui->nowItem->page.jumpPage->cursorLastColumn;
-    ui->cursor.targrtRow = ui->nowItem->page.jumpPage->cursorLastRow;
-    ui->cursor.targrtWide = ui->nowItem->page.jumpPage->cursorLastWide;
+    ui->cursor.targrtRow    = ui->nowItem->page.jumpPage->cursorLastRow;
+    ui->cursor.targrtWide   = ui->nowItem->page.jumpPage->cursorLastWide;
 }
 
 static void Dialog_AnimationParam_Init(ui_t *ui)
 {
     ui->dialog.nowHigh = 0;
     ui->dialog.nowWide = 0;
-    ui->dialog.times = 0;
+    ui->dialog.times   = 0;
 }
 
 static void Scrollbar_Init(ui_t *ui)
@@ -225,7 +224,7 @@ static void Scrollbar_Init(ui_t *ui)
 static void Optionbar_Init(ui_t *ui)
 {
     ui->optionbar.nowLenght = 0;
-    ui->optionbar.position = 0;
+    ui->optionbar.position  = 0;
 }
 
 /**
@@ -237,18 +236,18 @@ static void Optionbar_Init(ui_t *ui)
  * 该函数首先绘制对话框的边框，然后绘制对话框的背景盒。
  * 使用了OLED显示设备的相关函数来完成绘制操作。
  */
-static void Draw_Dialog(ui_t *ui, uint16_t x,uint16_t y,uint16_t Now_w,uint16_t Now_h,int16_t targrtW,int16_t targrtH)
+static void Draw_Dialog(ui_t *ui, uint16_t x, uint16_t y, uint16_t Now_w, uint16_t Now_h, int16_t targrtW, int16_t targrtH)
 {
     uint8_t bgC = ui->bgColor;
     Disp_SetDrawColor(&bgC);
     Disp_DrawBox(x, y, targrtW, Now_h);
     // 设置绘制背景的颜色，并绘制背景盒
-    bgC = bgC^0x01;
+    bgC = bgC ^ 0x01;
     Disp_SetDrawColor(&bgC);
-    Disp_DrawLine(x, y, x+Now_w, y);
-    Disp_DrawLine(x, y, x, y+Now_h);
-    Disp_DrawLine(x+targrtW, y+targrtH, x+targrtW, y+targrtH-Now_h);
-    Disp_DrawLine(x+targrtW, y+targrtH, x+targrtW-Now_w, y+targrtH);
+    Disp_DrawLine(x, y, x + Now_w, y);
+    Disp_DrawLine(x, y, x, y + Now_h);
+    Disp_DrawLine(x + targrtW, y + targrtH, x + targrtW, y + targrtH - Now_h);
+    Disp_DrawLine(x + targrtW, y + targrtH, x + targrtW - Now_w, y + targrtH);
 }
 
 /**
@@ -264,57 +263,57 @@ static void Draw_Dialog(ui_t *ui, uint16_t x,uint16_t y,uint16_t Now_w,uint16_t 
  * @param targrtH 目标对话框的高度。
  * @return uint8_t 如果动画时间达到预设的对话框显示时间，则返回true；否则返回false。
  */
-uint8_t Dialog_Show(ui_t *ui, int16_t x,int16_t y,int16_t targrtW,int16_t targrtH)
+uint8_t Dialog_Show(ui_t *ui, int16_t x, int16_t y, int16_t targrtW, int16_t targrtH)
 {
     // 当前处于应用绘制状态时，处理对话框的缩放动画
-    if (ui->menuState == UI_ITEM_DRAWING)
+    if(ui->menuState == UI_ITEM_DRAWING)
     {
         // 根据当前时间和目标尺寸计算对话框的当前宽度
-        ui->dialog.nowWide = (uint16_t )easeInOutCirc(ui->dialog.times, 0, (float)targrtW, UI_DIALOG_SCALE_ANI_TOTAL_TIME);
+        ui->dialog.nowWide = (uint16_t)easeInOutCirc(ui->dialog.times, 0, (float)targrtW, UI_DIALOG_SCALE_ANI_TOTAL_TIME);
         // 根据当前时间和目标尺寸计算对话框的当前高度
-        ui->dialog.nowHigh = (uint16_t )easeInOutCirc(ui->dialog.times, 0, (float)targrtH, UI_DIALOG_SCALE_ANI_TOTAL_TIME);
+        ui->dialog.nowHigh = (uint16_t)easeInOutCirc(ui->dialog.times, 0, (float)targrtH, UI_DIALOG_SCALE_ANI_TOTAL_TIME);
         // 绘制当前尺寸的对话框
         Draw_Dialog(ui, x, y, ui->dialog.nowWide, ui->dialog.nowHigh, targrtW, targrtH);
-        ui->dialog.times ++;
+        ui->dialog.times++;
     }
 
     // 当动画时间达到预设的对话框显示时间时，切换到应用运行状态
-    if ((ui->dialog.nowWide == targrtW) && (ui->dialog.nowHigh == targrtH))
+    if((ui->dialog.nowWide == targrtW) && (ui->dialog.nowHigh == targrtH))
     {
         ui->dialog.times = 0;
         Change_UIState(ui, UI_ITEM_RUNING);
         return true;
     }
-    
-    Disp_SendBuffer();
+
+    Disp_SendBuffer( );
     return false;
 }
 
-uint8_t Notifications(ui_t *ui, int16_t x,int16_t y,int16_t targrtW,int16_t targrtH)
+uint8_t Notifications(ui_t *ui, int16_t x, int16_t y, int16_t targrtW, int16_t targrtH)
 {
     // 当前处于应用绘制状态时，处理对话框的缩放动画
-    if (ui->menuState == UI_ITEM_DRAWING)
+    if(ui->menuState == UI_ITEM_DRAWING)
     {
         // 根据当前时间和目标尺寸计算对话框的当前宽度
-        ui->dialog.nowWide = (uint16_t )easeInOutCirc(ui->dialog.times, 0, (float)targrtW, UI_DIALOG_SCALE_ANI_TOTAL_TIME);
+        ui->dialog.nowWide = (uint16_t)easeInOutCirc(ui->dialog.times, 0, (float)targrtW, UI_DIALOG_SCALE_ANI_TOTAL_TIME);
         // 根据当前时间和目标尺寸计算对话框的当前高度
-        ui->dialog.nowHigh = (uint16_t )easeInOutCirc(ui->dialog.times, 0, (float)targrtH, UI_DIALOG_SCALE_ANI_TOTAL_TIME);
+        ui->dialog.nowHigh = (uint16_t)easeInOutCirc(ui->dialog.times, 0, (float)targrtH, UI_DIALOG_SCALE_ANI_TOTAL_TIME);
         // 绘制当前尺寸的对话框
         Draw_Dialog(ui, x, y, ui->dialog.nowWide, ui->dialog.nowHigh, targrtW, targrtH);
-        ui->dialog.times ++;
+        ui->dialog.times++;
     }
 
     // 当动画时间达到预设的对话框显示时间时，切换到应用运行状态
-    if ((ui->dialog.nowWide == targrtW) && (ui->dialog.nowHigh == targrtH))
+    if((ui->dialog.nowWide == targrtW) && (ui->dialog.nowHigh == targrtH))
     {
         ui->dialog.times = 0;
-        char value[20] = {0};
+        char value[20]   = {0};
         sprintf(value, "%s OK!", ui->nowItem->itemName);
-        Disp_DrawStr(x + 5, y + targrtH/2, value);
+        Disp_DrawStr(x + 5, y + targrtH / 2, value);
         Change_UIState(ui, UI_ITEM_RUNING);
         return true;
     }
-    Disp_SendBuffer();
+    Disp_SendBuffer( );
     return false;
 }
 
@@ -345,22 +344,23 @@ static void Set_BgColor(ui_t *ui, uint8_t color)
 void Draw_Scrollbar(ui_t *ui, uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t r, float step)
 {
     uint8_t color = 0;
-    float temp = 0;
-    #if ( UI_USE_FREERTOS == 1 )
-    if(ui->nowItem->element->data->dataRootMutex != NULL)xSemaphoreTake(*ui->nowItem->element->data->dataRootMutex, portMAX_DELAY);
-    #endif
-    switch (ui->nowItem->element->data->dataType)
+    float   temp  = 0;
+#if(UI_USE_FREERTOS == 1)
+    if(ui->nowItem->element->data->dataRootMutex != NULL)
+        xSemaphoreTake(*ui->nowItem->element->data->dataRootMutex, portMAX_DELAY);
+#endif
+    switch(ui->nowItem->element->data->dataType)
     {
     case UI_DATA_INT:
         // 根据当前值计算滚动条可见部分的长度
-        if (((*(int *)(ui->nowItem->element->data->ptr)) <= ui->nowItem->element->data->max) && ((*(int *)(ui->nowItem->element->data->ptr)) >= ui->nowItem->element->data->min))
+        if(((*(int *)(ui->nowItem->element->data->ptr)) <= ui->nowItem->element->data->max) && ((*(int *)(ui->nowItem->element->data->ptr)) >= ui->nowItem->element->data->min))
         {
             (*(int *)(ui->nowItem->element->data->ptr)) += step;
-            if ((*(int *)(ui->nowItem->element->data->ptr)) > ui->nowItem->element->data->max)
+            if((*(int *)(ui->nowItem->element->data->ptr)) > ui->nowItem->element->data->max)
             {
                 (*(int *)(ui->nowItem->element->data->ptr)) = ui->nowItem->element->data->max;
             }
-            if ((*(int *)(ui->nowItem->element->data->ptr)) < ui->nowItem->element->data->min)
+            if((*(int *)(ui->nowItem->element->data->ptr)) < ui->nowItem->element->data->min)
             {
                 (*(int *)(ui->nowItem->element->data->ptr)) = ui->nowItem->element->data->min;
             }
@@ -369,14 +369,14 @@ void Draw_Scrollbar(ui_t *ui, uint16_t x, uint16_t y, uint16_t w, uint16_t h, ui
         break;
     case UI_DATA_FLOAT:
         // 根据当前值计算滚动条可见部分的长度
-        if (((*(float *)(ui->nowItem->element->data->ptr)) <= ui->nowItem->element->data->max) && ((*(float *)(ui->nowItem->element->data->ptr)) >= ui->nowItem->element->data->min))
+        if(((*(float *)(ui->nowItem->element->data->ptr)) <= ui->nowItem->element->data->max) && ((*(float *)(ui->nowItem->element->data->ptr)) >= ui->nowItem->element->data->min))
         {
             (*(float *)(ui->nowItem->element->data->ptr)) += step;
-            if ((*(float *)(ui->nowItem->element->data->ptr)) > ui->nowItem->element->data->max)
+            if((*(float *)(ui->nowItem->element->data->ptr)) > ui->nowItem->element->data->max)
             {
                 (*(float *)(ui->nowItem->element->data->ptr)) = ui->nowItem->element->data->max;
             }
-            if ((*(float *)(ui->nowItem->element->data->ptr)) < ui->nowItem->element->data->min)
+            if((*(float *)(ui->nowItem->element->data->ptr)) < ui->nowItem->element->data->min)
             {
                 (*(float *)(ui->nowItem->element->data->ptr)) = ui->nowItem->element->data->min;
             }
@@ -391,11 +391,12 @@ void Draw_Scrollbar(ui_t *ui, uint16_t x, uint16_t y, uint16_t w, uint16_t h, ui
     Disp_DrawBox(x, y, w, h);
     color = 1;
     Disp_SetDrawColor(&color);
-    ui->scrollbar.value = (uint16_t )UI_Animation(temp, (float )ui->scrollbar.value, &ui->animation.scrollbar_ani);
+    ui->scrollbar.value = (uint16_t)UI_Animation(temp, (float)ui->scrollbar.value, &ui->animation.scrollbar_ani);
     Disp_DrawBox(x, y, ui->scrollbar.value, h);
-    #if ( UI_USE_FREERTOS == 1 )
-    if(ui->nowItem->element->data->dataRootMutex != NULL)xSemaphoreGive(*ui->nowItem->element->data->dataRootMutex);
-    #endif
+#if(UI_USE_FREERTOS == 1)
+    if(ui->nowItem->element->data->dataRootMutex != NULL)
+        xSemaphoreGive(*ui->nowItem->element->data->dataRootMutex);
+#endif
 }
 
 /**
@@ -405,35 +406,35 @@ void Draw_Scrollbar(ui_t *ui, uint16_t x, uint16_t y, uint16_t w, uint16_t h, ui
  * @return uint8_t 返回调整后的disapper值，用于下次调用时继续消失过程
  */
 static uint8_t UI_Disapper(ui_t *ui, uint8_t disapper)
-{ 
+{
     short disapper_temp = 0;
     // 计算屏幕缓冲区的总长度
-    int length = 8 * Disp_GetBufferTileHeight() * Disp_GetBufferTileWidth();
-    uint8_t *p = Disp_GetBufferPtr(); // 获取屏幕缓冲区的指针
+    int      length = 8 * Disp_GetBufferTileHeight( ) * Disp_GetBufferTileWidth( );
+    uint8_t *p      = Disp_GetBufferPtr( ); // 获取屏幕缓冲区的指针
 
     // 如果背景色为黑色，那么执行与操作，让像素点逐渐变暗从而消失
-    if(ui->bgColor==0)
-    { 
-        for( int i = 0; i < length; i++) 
-        { 
-            p[i] = p[i] & (rand()%0xff) >> disapper; // 通过与操作使像素点变暗
-        } 
+    if(ui->bgColor == 0)
+    {
+        for(int i = 0; i < length; i++)
+        {
+            p[i] = p[i] & (rand( ) % 0xff) >> disapper; // 通过与操作使像素点变暗
+        }
     }
     else // 如果背景色不是黑色，执行或操作，让像素点逐渐变亮从而消失
-    { 
-        for( int i = 0; i < length; i++) 
-        { 
-            p[i] = p[i] | (rand()%0xff) >> disapper; // 通过或操作使像素点变亮
-        } 
+    {
+        for(int i = 0; i < length; i++)
+        {
+            p[i] = p[i] | (rand( ) % 0xff) >> disapper; // 通过或操作使像素点变亮
+        }
     }
-    
-    disapper += 2; // 每次调用使消失程度增加，以便逐渐完成消失过程
+
+    disapper += 2;    // 每次调用使消失程度增加，以便逐渐完成消失过程
     if(disapper >= 8) // 当消失程度达到最大值时重置为0，准备下一次调用
-    { 
-        disapper = 0; 
-    } 
-    
-    Disp_SendBuffer(); // 将更新后的缓冲区内容发送到OLED显示设备
+    {
+        disapper = 0;
+    }
+
+    Disp_SendBuffer( ); // 将更新后的缓冲区内容发送到OLED显示设备
     disapper_temp = disapper;
     return disapper_temp; // 返回调整后的disapper值，供外部调用者使用
 }
@@ -451,15 +452,15 @@ static uint8_t UI_Disapper(ui_t *ui, uint8_t disapper)
 static uint8_t Draw_TextPage_Optionbar(ui_t *ui, ui_item_t *now_Item, ui_item_t *next_item)
 {
     // 根据下一个项的id和位置长度，计算其理论绘制长度
-    ui->optionbar.targetLenght = (UI_VER_RES / (float)(next_item->page.location->length)) *next_item->id;
+    ui->optionbar.targetLenght = (UI_VER_RES / (float)(next_item->page.location->length)) * next_item->id;
     // 使用线性插值计算当前的绘制长度
-    ui->optionbar.nowLenght = (uint16_t )UI_Animation((float )ui->optionbar.targetLenght, (float )ui->optionbar.nowLenght, &ui->animation.optionbar_ani);
-    ui->optionbar.position = (uint16_t )UI_Animation((float )UI_VER_RES, (float )ui->optionbar.position, &ui->animation.optionbarPos_ani);
+    ui->optionbar.nowLenght = (uint16_t)UI_Animation((float)ui->optionbar.targetLenght, (float)ui->optionbar.nowLenght, &ui->animation.optionbar_ani);
+    ui->optionbar.position  = (uint16_t)UI_Animation((float)UI_VER_RES, (float)ui->optionbar.position, &ui->animation.optionbarPos_ani);
     // 绘制选项移动的指示线
     Disp_DrawLine(UI_HOR_RES - 7, 0, UI_HOR_RES - 7, ui->optionbar.position);
     // 根据计算出的长度，绘制当前选项的高亮框
-    if(ui->optionbar.nowLenght > 3)   // 边的长度必须大于圆角宽度+1，不然会显示异常
-    Disp_DrawRBox(UI_HOR_RES - 10, 0, 6, ui->optionbar.nowLenght, 2);
+    if(ui->optionbar.nowLenght > 3) // 边的长度必须大于圆角宽度+1，不然会显示异常
+        Disp_DrawRBox(UI_HOR_RES - 10, 0, 6, ui->optionbar.nowLenght, 2);
 
     if(ui->optionbar.nowLenght == ui->optionbar.targetLenght && ui->optionbar.position == UI_VER_RES)
     {
@@ -471,15 +472,15 @@ static uint8_t Draw_TextPage_Optionbar(ui_t *ui, ui_item_t *now_Item, ui_item_t 
 static uint8_t Draw_ImagePage_Optionbar(ui_t *ui, ui_item_t *now_Item, ui_item_t *next_item)
 {
     // 根据下一个项的id和位置长度，计算其理论绘制长度
-    ui->optionbar.targetLenght = (UI_HOR_RES / (float)(next_item->page.location->length)) *next_item->id;
+    ui->optionbar.targetLenght = (UI_HOR_RES / (float)(next_item->page.location->length)) * next_item->id;
     // 使用线性插值计算当前的绘制长度
-    ui->optionbar.nowLenght = (uint16_t )UI_Animation((float )ui->optionbar.targetLenght, (float )ui->optionbar.nowLenght, &ui->animation.optionbar_ani);
-    ui->optionbar.position = (uint16_t )UI_Animation((float )UI_HOR_RES, (float )ui->optionbar.position, &ui->animation.optionbarPos_ani);
+    ui->optionbar.nowLenght = (uint16_t)UI_Animation((float)ui->optionbar.targetLenght, (float)ui->optionbar.nowLenght, &ui->animation.optionbar_ani);
+    ui->optionbar.position  = (uint16_t)UI_Animation((float)UI_HOR_RES, (float)ui->optionbar.position, &ui->animation.optionbarPos_ani);
     // 绘制选项移动的指示线
     Disp_DrawLine(0, 2, ui->optionbar.position, 2);
     // 根据计算出的长度，绘制当前选项的高亮框
-    if(ui->optionbar.nowLenght > 3)   // 边的长度必须大于圆角宽度+1，不然会显示异常
-    Disp_DrawRBox(0, 0, ui->optionbar.nowLenght, 6, 2);
+    if(ui->optionbar.nowLenght > 3) // 边的长度必须大于圆角宽度+1，不然会显示异常
+        Disp_DrawRBox(0, 0, ui->optionbar.nowLenght, 6, 2);
 
     if(ui->optionbar.nowLenght == ui->optionbar.targetLenght && ui->optionbar.position == UI_HOR_RES)
     {
@@ -490,14 +491,16 @@ static uint8_t Draw_ImagePage_Optionbar(ui_t *ui, ui_item_t *now_Item, ui_item_t
 
 static void Calculate_Page_xy(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_item_t *next_item)
 {
-    switch (Page->type)
+    switch(Page->type)
     {
     case UI_PAGE_TEXT:
         // 计算页面滚动的距离
-        if (Page->pageState == UI_PAGE_MOVING)
+        if(Page->pageState == UI_PAGE_MOVING)
         {
-            if ((next_item->id - now_Item->id) > 0)ui->headY -= ((next_item->id - now_Item->id) > (Page->length - UI_VER_RES/ui->textSpace)) ? ((Page->length + 1 - UI_VER_RES/ui->textSpace) *ui->textSpace) : ui->textSpace;
-            else ui->headY += ((now_Item->id - next_item->id) > (Page->length - UI_VER_RES/ui->textSpace)) ? ((Page->length + 1 - UI_VER_RES/ui->textSpace) *ui->textSpace) : ui->textSpace;
+            if((next_item->id - now_Item->id) > 0)
+                ui->headY -= ((next_item->id - now_Item->id) > (Page->length - UI_VER_RES / ui->textSpace)) ? ((Page->length + 1 - UI_VER_RES / ui->textSpace) * ui->textSpace) : ui->textSpace;
+            else
+                ui->headY += ((now_Item->id - next_item->id) > (Page->length - UI_VER_RES / ui->textSpace)) ? ((Page->length + 1 - UI_VER_RES / ui->textSpace) * ui->textSpace) : ui->textSpace;
             Page->pageState = UI_PAGE_STATIC; // 更新页面状态为静态显示
         }
 
@@ -508,10 +511,10 @@ static void Calculate_Page_xy(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui
             {
                 now_Item->page.location->jumpX = ui->headX;
                 now_Item->page.location->jumpY = ui->headY;
-                ui->headY = UI_PAGE_INIT_Y;
-                ui->headX = UI_PAGE_INIT_X;
+                ui->headY                      = UI_PAGE_INIT_Y;
+                ui->headX                      = UI_PAGE_INIT_X;
             }
-            else if (now_Item->itemType == UI_ITEM_RETURN)
+            else if(now_Item->itemType == UI_ITEM_RETURN)
             {
                 ui->headY = next_item->page.location->jumpY;
                 ui->headX = next_item->page.location->jumpX;
@@ -520,10 +523,12 @@ static void Calculate_Page_xy(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui
         break;
     case UI_PAGE_ICON:
         // 计算页面滚动的距离
-        if (Page->pageState == UI_PAGE_MOVING)
+        if(Page->pageState == UI_PAGE_MOVING)
         {
-            if ((next_item->id - now_Item->id) > 0)ui->headX -= ((next_item->id - now_Item->id) > (Page->length - UI_HOR_RES/ui->imageSpace)) ? ((Page->length + 1 - UI_HOR_RES/ui->imageSpace) *ui->imageSpace) : ui->imageSpace;
-            else ui->headX += ((now_Item->id - next_item->id) > (Page->length - UI_HOR_RES/ui->imageSpace)) ? ((Page->length + 1 - UI_HOR_RES/ui->imageSpace) *ui->imageSpace) : ui->imageSpace;
+            if((next_item->id - now_Item->id) > 0)
+                ui->headX -= ((next_item->id - now_Item->id) > (Page->length - UI_HOR_RES / ui->imageSpace)) ? ((Page->length + 1 - UI_HOR_RES / ui->imageSpace) * ui->imageSpace) : ui->imageSpace;
+            else
+                ui->headX += ((now_Item->id - next_item->id) > (Page->length - UI_HOR_RES / ui->imageSpace)) ? ((Page->length + 1 - UI_HOR_RES / ui->imageSpace) * ui->imageSpace) : ui->imageSpace;
             Page->pageState = UI_PAGE_STATIC; // 更新页面状态为静态显示
         }
 
@@ -534,10 +539,10 @@ static void Calculate_Page_xy(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui
             {
                 now_Item->page.location->jumpX = ui->headX;
                 now_Item->page.location->jumpY = ui->headY;
-                ui->headX = UI_PAGE_INIT_X;
-                ui->headY = UI_PAGE_INIT_Y;
+                ui->headX                      = UI_PAGE_INIT_X;
+                ui->headY                      = UI_PAGE_INIT_Y;
             }
-            else if (now_Item->itemType == UI_ITEM_RETURN)
+            else if(now_Item->itemType == UI_ITEM_RETURN)
             {
                 ui->headX = next_item->page.location->jumpX;
                 ui->headY = next_item->page.location->jumpY;
@@ -551,16 +556,16 @@ static void Calculate_Page_xy(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui
 
 static void Calculate_Item_xy(ui_t *ui, ui_page_t *Page)
 {
-    ui_item_t * Item = Page->item.head; // 从页面的头部开始遍历
-    for (uint16_t i = 0; i <= Page->length; i++)
+    ui_item_t *Item = Page->item.head; // 从页面的头部开始遍历
+    for(uint16_t i = 0; i <= Page->length; i++)
     {
-        switch (Page->type)
+        switch(Page->type)
         {
         case UI_PAGE_TEXT:
-            Item->y = ui->headY + i *ui->textSpace;
+            Item->y = ui->headY + i * ui->textSpace;
             break;
         case UI_PAGE_ICON:
-            Item->x = ui->headX + i *ui->imageSpace;
+            Item->x = ui->headX + i * ui->imageSpace;
             break;
         default:
             break;
@@ -579,23 +584,23 @@ static void Calculate_Coordinate(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item,
     }
 }
 
-static void Calculate_PageState(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item,ui_item_t *next_item)
+static void Calculate_PageState(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_item_t *next_item)
 {
-    if(next_item->page.location != now_Item->page.location)        
+    if(next_item->page.location != now_Item->page.location)
     {
         Page->pageState = UI_PAGE_STATIC;
-        return ;
+        return;
     }
-    switch (Page->type)
+    switch(Page->type)
     {
     case UI_PAGE_TEXT:
-        if (next_item->y - UI_FONT_HIGHT > (ui->textSpace*(UI_VER_RES/ui->textSpace) - ui->textSpace) || next_item->y - UI_FONT_HIGHT < 0)  // 防止光标溢出可视范围
+        if(next_item->y - UI_FONT_HIGHT > (ui->textSpace * (UI_VER_RES / ui->textSpace) - ui->textSpace) || next_item->y - UI_FONT_HIGHT < 0) // 防止光标溢出可视范围
         {
             Page->pageState = UI_PAGE_MOVING;
         }
         break;
     case UI_PAGE_ICON:
-        if (next_item->x > (ui->imageSpace*(UI_HOR_RES/ui->imageSpace) - ui->imageSpace) || next_item->x < 0)  // 防止光标溢出可视范围
+        if(next_item->x > (ui->imageSpace * (UI_HOR_RES / ui->imageSpace) - ui->imageSpace) || next_item->x < 0) // 防止光标溢出可视范围
         {
             Page->pageState = UI_PAGE_MOVING;
         }
@@ -605,31 +610,35 @@ static void Calculate_PageState(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item,u
     }
 }
 
-static void Calculate_Cursor(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item,ui_item_t *next_item)
+static void Calculate_Cursor(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_item_t *next_item)
 {
-    if(next_item->page.location != now_Item->page.location)        
+    if(next_item->page.location != now_Item->page.location)
     {
-        if(now_Item->itemType == UI_ITEM_PARENTS)Cursor_AnimationParam_Init(ui, next_item);
-        else if (now_Item->itemType == UI_ITEM_RETURN)Cursor_AnimationParam_Change(ui);
-        return ;
+        if(now_Item->itemType == UI_ITEM_PARENTS)
+            Cursor_AnimationParam_Init(ui, next_item);
+        else if(now_Item->itemType == UI_ITEM_RETURN)
+            Cursor_AnimationParam_Change(ui);
+        return;
     }
-    switch (Page->type)
+    switch(Page->type)
     {
     case UI_PAGE_TEXT:
         // 计算当前项名称的宽度
-        ui->cursor.nowWide  = strlen(now_Item->itemName)*UI_FONT_WIDTH + 4;
+        ui->cursor.nowWide   = strlen(now_Item->itemName) * UI_FONT_WIDTH + 4;
         ui->cursor.targrtRow = next_item->y - UI_FONT_HIGHT;
-        if (ui->cursor.targrtRow > (ui->textSpace*(UI_VER_RES/ui->textSpace) - ui->textSpace) || ui->cursor.targrtRow < 0)  // 防止光标溢出可视范围
+        if(ui->cursor.targrtRow > (ui->textSpace * (UI_VER_RES / ui->textSpace) - ui->textSpace) || ui->cursor.targrtRow < 0) // 防止光标溢出可视范围
         {
-            if(abs(now_Item->id - next_item->id) == 1)ui->cursor.targrtRow = now_Item->y - UI_FONT_HIGHT;
+            if(abs(now_Item->id - next_item->id) == 1)
+                ui->cursor.targrtRow = now_Item->y - UI_FONT_HIGHT;
         }
         break;
     case UI_PAGE_ICON:
         // 根据选项的id差值计算目标行位置，并限制在可视范围内
         ui->cursor.targrtColumn = next_item->x;
-        if (ui->cursor.targrtColumn > (ui->imageSpace*(UI_HOR_RES/ui->imageSpace) - ui->imageSpace) || ui->cursor.targrtColumn < 0)  // 防止光标溢出可视范围
+        if(ui->cursor.targrtColumn > (ui->imageSpace * (UI_HOR_RES / ui->imageSpace) - ui->imageSpace) || ui->cursor.targrtColumn < 0) // 防止光标溢出可视范围
         {
-            if(abs(now_Item->id - next_item->id) == 1)ui->cursor.targrtColumn = now_Item->x;
+            if(abs(now_Item->id - next_item->id) == 1)
+                ui->cursor.targrtColumn = now_Item->x;
         }
         break;
     default:
@@ -639,19 +648,19 @@ static void Calculate_Cursor(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item,ui_i
 
 static void Draw_TextPage(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_item_t *next_item)
 {
-    ui_item_t * temp_item = Page->item.head; // 从页面的头部开始遍历
+    ui_item_t *temp_item = Page->item.head; // 从页面的头部开始遍历
 
     if(ui->nowItem->page.location != next_item->page.location)
     {
-        for (uint16_t i = 0; i <= Page->length; i++)
+        for(uint16_t i = 0; i <= Page->length; i++)
         {
             temp_item->animationY = 0;
-            temp_item = temp_item->nextItem;
+            temp_item             = temp_item->nextItem;
         }
     }
-    for (uint16_t i = 0; i <= Page->length; i++)
+    for(uint16_t i = 0; i <= Page->length; i++)
     {
-        temp_item->animationY = (int16_t )UI_Animation((float )temp_item->y, (float )temp_item->animationY, &ui->animation.textPage_ani);
+        temp_item->animationY = (int16_t)UI_Animation((float)temp_item->y, (float)temp_item->animationY, &ui->animation.textPage_ani);
         if(temp_item->animationY >= -UI_FONT_HIGHT && temp_item->animationY <= UI_VER_RES + UI_FONT_HIGHT) //超出屏幕范围则不绘制
         {
             if(temp_item->itemType == UI_ITEM_DATA && temp_item->element != NULL)
@@ -659,7 +668,7 @@ static void Draw_TextPage(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_ite
                 char Data[20] = {0}; // 用于临时存储数据字符串
                 Disp_SetClipWindow(UI_DATA_X0, UI_DATA_Y0, UI_DATA_X1, UI_DATA_Y1);
                 // 格式化并绘制数据
-                switch (temp_item->element->data->dataType)
+                switch(temp_item->element->data->dataType)
                 {
                 case UI_DATA_INT:
                     snprintf(Data, sizeof(Data), "%d", *(int *)(temp_item->element->data->ptr));
@@ -670,7 +679,8 @@ static void Draw_TextPage(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_ite
                 case UI_DATA_SWITCH:
                     Disp_DrawRFrame(UI_HOR_RES - 36, temp_item->animationY - UI_FONT_HIGHT, UI_FONT_HIGHT, UI_FONT_HIGHT, 2);
                     // 绘制开关状态
-                    if(*(uint8_t *)temp_item->element->data->ptr == true)Disp_DrawRBox(UI_HOR_RES - 36 + 2, temp_item->animationY - UI_FONT_HIGHT + 2, UI_FONT_HIGHT - 4, UI_FONT_HIGHT - 4, 2);
+                    if(*(uint8_t *)temp_item->element->data->ptr == true)
+                        Disp_DrawRBox(UI_HOR_RES - 36 + 2, temp_item->animationY - UI_FONT_HIGHT + 2, UI_FONT_HIGHT - 4, UI_FONT_HIGHT - 4, 2);
                     break;
                 case UI_DATA_STRING:
                     strncpy(Data, (char *)(temp_item->element->data->ptr), sizeof(Data));
@@ -682,9 +692,9 @@ static void Draw_TextPage(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_ite
             }
             Disp_SetClipWindow(UI_TITLE_X0, UI_TITLE_Y0, UI_TITLE_X1, UI_TITLE_Y1);
 
-            #if ( UI_TITLE_ROLL == 1 )
+#if(UI_TITLE_ROLL == 1)
             // 根据temp_item的滚动状态选择不同的操作
-            switch (temp_item->rollState)
+            switch(temp_item->rollState)
             {
             case UI_ITEM_ROLL_STOP: // 如果项目处于静止状态
                 // 检查项目名称是否需要开始滚动
@@ -692,13 +702,13 @@ static void Draw_TextPage(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_ite
                     temp_item->rollState = UI_ITEM_ROLL_FORWARD; // 如果名称宽度大于项目区域宽度，改变状态为向前滚动
                 break;
             case UI_ITEM_ROLL_FORWARD: // 如果项目处于向前滚动状态
-                temp_item->x --; // 向左移动项目
+                temp_item->x--;        // 向左移动项目
                 // 检查是否需要改变滚动方向
                 if((strlen(temp_item->itemName) * UI_FONT_WIDTH + temp_item->x) < (UI_TITLE_X1 - UI_TITLE_X0))
                     temp_item->rollState = UI_ITEM_ROLL_BACKWARD; // 如果项目移出左边界，改变状态为向后滚动
                 break;
             case UI_ITEM_ROLL_BACKWARD: // 如果项目处于向后滚动状态
-                temp_item->x ++; // 向右移动项目
+                temp_item->x++;         // 向右移动项目
                 // 检查项目是否完全回到视图内
                 if(temp_item->x > 0)
                     temp_item->rollState = UI_ITEM_ROLL_STOP; // 如果项目完全回到视图内，改变状态为向前滚动
@@ -706,7 +716,7 @@ static void Draw_TextPage(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_ite
             default: // 默认情况下不做任何操作
                 break;
             }
-            #endif
+#endif
 
             Disp_DrawStr(temp_item->x, temp_item->animationY, temp_item->itemName); // 绘制项目名称
         }
@@ -715,61 +725,62 @@ static void Draw_TextPage(ui_t *ui, ui_page_t *Page, ui_item_t *now_Item, ui_ite
     uint8_t color = 2;
     Disp_SetDrawColor(&color); // 设置特定的颜色，通常用于高亮显示
     // 根据目标位置和当前位置，以及PID算法计算并更新当前选项的位置和宽度
-    ui->cursor.nowRow = (int )UI_Animation((float )ui->cursor.targrtRow, (float )ui->cursor.nowRow, &ui->animation.cursor_ani);
-    ui->cursor.nowWide = (int )UI_Animation((float )ui->cursor.targrtWide, (float )ui->cursor.nowWide, &ui->animation.cursor_ani);
+    ui->cursor.nowRow  = (int)UI_Animation((float)ui->cursor.targrtRow, (float)ui->cursor.nowRow, &ui->animation.cursor_ani);
+    ui->cursor.nowWide = (int)UI_Animation((float)ui->cursor.targrtWide, (float)ui->cursor.nowWide, &ui->animation.cursor_ani);
     // 绘制选中项的高亮边框
     Disp_DrawRBox(ui->headX + 1, ui->cursor.nowRow + 1, ui->cursor.nowWide, UI_FONT_HIGHT, 4);
-    Disp_SetMaxClipWindow();
+    Disp_SetMaxClipWindow( );
 }
 
 static void Draw_ImagePage(ui_t *ui, ui_page_t *Page, ui_item_t *nowItem, ui_item_t *next_item)
 {
-    static int16_t tital_x = 0;
-    ui_item_t * temp_item = Page->item.head; // 从页面的头部开始遍历
-    uint8_t color = 2;
+    static int16_t tital_x   = 0;
+    ui_item_t     *temp_item = Page->item.head; // 从页面的头部开始遍历
+    uint8_t        color     = 2;
     Draw_ImagePage_Optionbar(ui, nowItem, next_item);
     if(ui->nowItem->page.location != next_item->page.location)
     {
-        for (uint16_t i = 0; i <= Page->length; i++)
+        for(uint16_t i = 0; i <= Page->length; i++)
         {
             temp_item->animationX = 0;
-            temp_item = temp_item->nextItem;
+            temp_item             = temp_item->nextItem;
         }
     }
-    for (uint16_t i = 0; i <= Page->length; i++)
+    for(uint16_t i = 0; i <= Page->length; i++)
     {
-        temp_item->animationX = (int16_t )UI_Animation((float )temp_item->x, (float )temp_item->animationX, &ui->animation.imagePage_ani);
+        temp_item->animationX = (int16_t)UI_Animation((float)temp_item->x, (float)temp_item->animationX, &ui->animation.imagePage_ani);
         if(temp_item->animationX >= -UI_IMG_WIDTH && temp_item->animationX <= UI_HOR_RES + UI_IMG_WIDTH) //超出屏幕范围则不绘制
         {
-            color = ui->bgColor^0x01;
+            color = ui->bgColor ^ 0x01;
             Disp_SetDrawColor(&color);
             Disp_DrawXBMP(temp_item->animationX, 12, UI_IMG_WIDTH, UI_IMG_HEIGHT, temp_item->logo);
             color = 2;
             Disp_SetDrawColor(&color);
             Disp_DrawRBox(temp_item->animationX, 12, UI_IMG_WIDTH, UI_IMG_HEIGHT, 4);
         }
-        
+
         temp_item = temp_item->nextItem;
     }
 
-    #if ( UI_TITLE_ROLL == 1 )
+#if(UI_TITLE_ROLL == 1)
     // 根据temp_item的滚动状态选择不同的操作
-    switch (next_item->rollState)
+    switch(next_item->rollState)
     {
     case UI_ITEM_ROLL_STOP: // 如果项目处于静止状态
         // 检查项目名称是否需要开始滚动
         if(strlen(next_item->itemName) * UI_FONT_WIDTH > UI_HOR_RES)
             next_item->rollState = UI_ITEM_ROLL_FORWARD; // 如果名称宽度大于项目区域宽度，改变状态为向前滚动
-        else tital_x = 0;
+        else
+            tital_x = 0;
         break;
     case UI_ITEM_ROLL_FORWARD: // 如果项目处于向前滚动状态
-        tital_x --; // 向左移动项目
+        tital_x--;             // 向左移动项目
         // 检查是否需要改变滚动方向
         if((strlen(next_item->itemName) * UI_FONT_WIDTH + tital_x) < UI_HOR_RES)
             next_item->rollState = UI_ITEM_ROLL_BACKWARD; // 如果项目移出左边界，改变状态为向后滚动
         break;
     case UI_ITEM_ROLL_BACKWARD: // 如果项目处于向后滚动状态
-        tital_x ++; // 向右移动项目
+        tital_x++;              // 向右移动项目
         // 检查项目是否完全回到视图内
         if(tital_x > 0)
             next_item->rollState = UI_ITEM_ROLL_STOP; // 如果项目完全回到视图内，改变状态为向前滚动
@@ -777,13 +788,14 @@ static void Draw_ImagePage(ui_t *ui, ui_page_t *Page, ui_item_t *nowItem, ui_ite
     default: // 默认情况下不做任何操作
         break;
     }
-    #endif
+#endif
 
-    color = ui->bgColor^0x01;;
+    color = ui->bgColor ^ 0x01;
+    ;
     Disp_SetDrawColor(&color); // 设置特定的颜色，通常用于高亮显示
     Disp_DrawStr(tital_x, UI_VER_RES - 2, next_item->itemName);
     // 根据目标位置和当前位置，以及PID算法计算并更新当前选项的位置和宽度
-    ui->cursor.nowColumn = (int )UI_Animation((float )ui->cursor.targrtColumn, (float )ui->cursor.nowColumn, &ui->animation.cursor_ani);
+    ui->cursor.nowColumn = (int)UI_Animation((float)ui->cursor.targrtColumn, (float)ui->cursor.nowColumn, &ui->animation.cursor_ani);
     // 绘制选中项的高亮边框
     Disp_DrawBox(ui->cursor.nowColumn, UI_VER_RES - 17, UI_IMG_WIDTH, 2);
 }
@@ -798,10 +810,10 @@ static void Draw_ImagePage(ui_t *ui, ui_page_t *Page, ui_item_t *nowItem, ui_ite
  * @param nowItem 当前选中项
  * @param next_item 下一个将要选中的项
  */
-static void Draw_UI(ui_t *ui, ui_page_t *Page, ui_item_t *nowItem,ui_item_t *next_item)
+static void Draw_UI(ui_t *ui, ui_page_t *Page, ui_item_t *nowItem, ui_item_t *next_item)
 {
     Disp_SetFont(UI_FONT);
-    Disp_ClearBuffer(); // 清除屏幕缓冲区
+    Disp_ClearBuffer( ); // 清除屏幕缓冲区
 
     // 计算页面状态
     if(ui->menuState == UI_PAGE_RUNING)
@@ -810,15 +822,16 @@ static void Draw_UI(ui_t *ui, ui_page_t *Page, ui_item_t *nowItem,ui_item_t *nex
     }
 
     // 计算下一个将要选中项的名称宽度
-    if(strlen(next_item->itemName)*UI_FONT_WIDTH > (UI_TITLE_X1 - UI_TITLE_X0))
-    ui->cursor.targrtWide = UI_TITLE_X1 - UI_TITLE_X0;
-    else ui->cursor.targrtWide = strlen(next_item->itemName)*UI_FONT_WIDTH;
+    if(strlen(next_item->itemName) * UI_FONT_WIDTH > (UI_TITLE_X1 - UI_TITLE_X0))
+        ui->cursor.targrtWide = UI_TITLE_X1 - UI_TITLE_X0;
+    else
+        ui->cursor.targrtWide = strlen(next_item->itemName) * UI_FONT_WIDTH;
     uint8_t color = ui->bgColor;
     // 开始绘制菜单界面
-    Disp_SetDrawColor(&color); // 设置背景颜色
+    Disp_SetDrawColor(&color);                  // 设置背景颜色
     Disp_DrawBox(0, 0, UI_HOR_RES, UI_VER_RES); // 绘制屏幕背景框
-    color = color^0x01;
-    Disp_SetDrawColor(&color); // 设置绘制颜色为高亮或低亮
+    color = color ^ 0x01;
+    Disp_SetDrawColor(&color);                          // 设置绘制颜色为高亮或低亮
     Calculate_Coordinate(ui, Page, nowItem, next_item); // 绘制前计算最终坐标
     // 初始化或更新动画参数及页面状态
     if(ui->menuState == UI_PAGE_RUNING)
@@ -837,7 +850,7 @@ static void Draw_UI(ui_t *ui, ui_page_t *Page, ui_item_t *nowItem,ui_item_t *nex
         Draw_ImagePage(ui, Page, nowItem, next_item);
     }
 
-    Disp_SendBuffer(); // 将缓冲区的内容发送到OLED屏幕显示
+    Disp_SendBuffer( ); // 将缓冲区的内容发送到OLED屏幕显示
 
     // 更新菜单状态为绘制中
     Change_UIState(ui, UI_PAGE_DRAWING);
@@ -845,7 +858,8 @@ static void Draw_UI(ui_t *ui, ui_page_t *Page, ui_item_t *nowItem,ui_item_t *nex
 
 void Create_element(ui_item_t *item, ui_element_t *element)
 {
-    if(item == NULL || element == NULL)return ;
+    if(item == NULL || element == NULL)
+        return;
 
     item->element = element;
 }
@@ -858,108 +872,110 @@ void Create_element(ui_item_t *item, ui_element_t *element)
 static void Process_UI_Run(ui_t *ui, UI_ACTION Action)
 {
     uint8_t disapper = 0;
-    switch (ui->menuState) // 根据当前菜单状态进行不同的操作
+    switch(ui->menuState) // 根据当前菜单状态进行不同的操作
     {
-        case UI_PAGE_RUNING:
-            switch (Action) // 根据操作方向更新菜单项
+    case UI_PAGE_RUNING:
+        switch(Action) // 根据操作方向更新菜单项
+        {
+        case UI_ACTION_UP:
+            // 向上移动菜单项，确保当前项和上一项非空
+            if(ui->nowItem != NULL && ui->nowItem->lastItem != NULL)
             {
-                case UI_ACTION_UP:
-                    // 向上移动菜单项，确保当前项和上一项非空
-                    if (ui->nowItem != NULL && ui->nowItem->lastItem != NULL) 
-                    {
-                        Draw_UI(ui, ui->nowItem->page.location, ui->nowItem, ui->nowItem->lastItem);
-                        ui->oldItem = ui->nowItem;
-                        ui->nowItem = ui->nowItem->lastItem;
-                    }
-                    break;
-                case UI_ACTION_DOWN:
-                    // 向下移动菜单项，确保当前项和下一项非空
-                    if (ui->nowItem != NULL && ui->nowItem->nextItem != NULL) 
-                    {
-                        Draw_UI(ui, ui->nowItem->page.location, ui->nowItem, ui->nowItem->nextItem);
-                        ui->oldItem = ui->nowItem;
-                        ui->nowItem = ui->nowItem->nextItem;
-                    }
-                    break;
-                case UI_ACTION_ENTER:
-                    // 当前项非空且为父项时，进入下一级菜单
-                    if(ui->nowItem != NULL && ui->nowItem->itemType == UI_ITEM_PARENTS)
-                    {
-                        // 避免重复状态改变
-                        if(ui->action != UI_ACTION_ENTER) Change_UIState(ui, UI_PAGE_RUNING);
-
-                        for (size_t i = 0; i < 8; i++) // 执行UI淡出操作
-                        {
-                            disapper = UI_Disapper(ui ,disapper);
-                        }
-                        
-                        // 如果存在跳转页面且不为空，则绘制跳转页面并更新当前项
-                        if(ui->nowItem->page.jumpPage != NULL && ui->nowItem->page.jumpPage->item.head != NULL) 
-                        {
-                            Optionbar_Init(ui);
-                            Draw_UI(ui, ui->nowItem->page.jumpPage, ui->nowItem, ui->nowItem->page.jumpPage->item.head);
-                            ui->nowItem->page.location->item.lastJumpItem = ui->nowItem;
-                            ui->oldItem = ui->nowItem;
-                            ui->nowItem = ui->nowItem->page.jumpPage->item.head;
-                        }
-                    }
-                    else if (ui->nowItem != NULL && ui->nowItem->itemType == UI_ITEM_RETURN)
-                    {
-                        // 避免重复状态改变
-                        if(ui->action != UI_ACTION_ENTER) Change_UIState(ui, UI_PAGE_RUNING);
-
-                        for (size_t i = 0; i < 8; i++) // 执行UI淡出操作
-                        {
-                            disapper = UI_Disapper(ui ,disapper);
-                        }
-                        
-                        // 如果存在跳转页面，则绘制跳转页面并更新当前项
-                        if(ui->nowItem->page.jumpPage != NULL) 
-                        {
-                            Draw_UI(ui, ui->nowItem->page.jumpPage->item.lastJumpItem->page.location, ui->nowItem, ui->nowItem->page.jumpPage->item.lastJumpItem);
-                            ui->oldItem = ui->nowItem;
-                            ui->nowItem = ui->nowItem->page.jumpPage->item.lastJumpItem;
-                        }
-                    }
-                    else // 如果当前项为空或非父项，则进入应用绘制状态
-                    {
-                        UI_Disapper(ui, 1);
-                        Change_UIState(ui, UI_ITEM_DRAWING);
-                    }
-                    break;
-                default:
-                    Draw_UI(ui, ui->nowItem->page.location, ui->nowItem, ui->nowItem);
-                    break;
+                Draw_UI(ui, ui->nowItem->page.location, ui->nowItem, ui->nowItem->lastItem);
+                ui->oldItem = ui->nowItem;
+                ui->nowItem = ui->nowItem->lastItem;
             }
             break;
-        case UI_ITEM_EXIT:
-            // 退出应用时的初始化操作，并返回菜单运行状态
-            Dialog_AnimationParam_Init(ui);
-            Scrollbar_Init(ui);
-            Change_UIState(ui, UI_PAGE_RUNING);
-            for (size_t i = 0; i < 8; i++)
+        case UI_ACTION_DOWN:
+            // 向下移动菜单项，确保当前项和下一项非空
+            if(ui->nowItem != NULL && ui->nowItem->nextItem != NULL)
             {
-                disapper = UI_Disapper(ui, disapper); // 执行UI淡出操作
-            }
-            if(ui->nowItem != NULL) // 确保now_item非空
-            {
-                Draw_UI(ui, ui->nowItem->page.location, ui->nowItem, ui->nowItem);
+                Draw_UI(ui, ui->nowItem->page.location, ui->nowItem, ui->nowItem->nextItem);
+                ui->oldItem = ui->nowItem;
+                ui->nowItem = ui->nowItem->nextItem;
             }
             break;
-        case UI_PAGE_DRAWING:
-            // 如果当前正在绘制菜单，则根据方向进行状态更新和菜单重绘
-            if(ui->nowItem != NULL && ui->oldItem != NULL)
+        case UI_ACTION_ENTER:
+            // 当前项非空且为父项时，进入下一级菜单
+            if(ui->nowItem != NULL && ui->nowItem->itemType == UI_ITEM_PARENTS)
             {
-                Draw_UI(ui, ui->nowItem->page.location, ui->oldItem, ui->nowItem);
-                if (Action != UI_ACTION_NONE)
-                {
+                // 避免重复状态改变
+                if(ui->action != UI_ACTION_ENTER)
                     Change_UIState(ui, UI_PAGE_RUNING);
-                    Process_UI_Run(ui, Action);
+
+                for(size_t i = 0; i < 8; i++) // 执行UI淡出操作
+                {
+                    disapper = UI_Disapper(ui, disapper);
                 }
+
+                // 如果存在跳转页面且不为空，则绘制跳转页面并更新当前项
+                if(ui->nowItem->page.jumpPage != NULL && ui->nowItem->page.jumpPage->item.head != NULL)
+                {
+                    Optionbar_Init(ui);
+                    Draw_UI(ui, ui->nowItem->page.jumpPage, ui->nowItem, ui->nowItem->page.jumpPage->item.head);
+                    ui->nowItem->page.location->item.lastJumpItem = ui->nowItem;
+                    ui->oldItem                                   = ui->nowItem;
+                    ui->nowItem                                   = ui->nowItem->page.jumpPage->item.head;
+                }
+            }
+            else if(ui->nowItem != NULL && ui->nowItem->itemType == UI_ITEM_RETURN)
+            {
+                // 避免重复状态改变
+                if(ui->action != UI_ACTION_ENTER)
+                    Change_UIState(ui, UI_PAGE_RUNING);
+
+                for(size_t i = 0; i < 8; i++) // 执行UI淡出操作
+                {
+                    disapper = UI_Disapper(ui, disapper);
+                }
+
+                // 如果存在跳转页面，则绘制跳转页面并更新当前项
+                if(ui->nowItem->page.jumpPage != NULL)
+                {
+                    Draw_UI(ui, ui->nowItem->page.jumpPage->item.lastJumpItem->page.location, ui->nowItem, ui->nowItem->page.jumpPage->item.lastJumpItem);
+                    ui->oldItem = ui->nowItem;
+                    ui->nowItem = ui->nowItem->page.jumpPage->item.lastJumpItem;
+                }
+            }
+            else // 如果当前项为空或非父项，则进入应用绘制状态
+            {
+                UI_Disapper(ui, 1);
+                Change_UIState(ui, UI_ITEM_DRAWING);
             }
             break;
         default:
+            Draw_UI(ui, ui->nowItem->page.location, ui->nowItem, ui->nowItem);
             break;
+        }
+        break;
+    case UI_ITEM_EXIT:
+        // 退出应用时的初始化操作，并返回菜单运行状态
+        Dialog_AnimationParam_Init(ui);
+        Scrollbar_Init(ui);
+        Change_UIState(ui, UI_PAGE_RUNING);
+        for(size_t i = 0; i < 8; i++)
+        {
+            disapper = UI_Disapper(ui, disapper); // 执行UI淡出操作
+        }
+        if(ui->nowItem != NULL) // 确保now_item非空
+        {
+            Draw_UI(ui, ui->nowItem->page.location, ui->nowItem, ui->nowItem);
+        }
+        break;
+    case UI_PAGE_DRAWING:
+        // 如果当前正在绘制菜单，则根据方向进行状态更新和菜单重绘
+        if(ui->nowItem != NULL && ui->oldItem != NULL)
+        {
+            Draw_UI(ui, ui->nowItem->page.location, ui->oldItem, ui->nowItem);
+            if(Action != UI_ACTION_NONE)
+            {
+                Change_UIState(ui, UI_PAGE_RUNING);
+                Process_UI_Run(ui, Action);
+            }
+        }
+        break;
+    default:
+        break;
     }
 }
 
@@ -971,11 +987,12 @@ static void Process_UI_Run(ui_t *ui, UI_ACTION Action)
  */
 static void Process_App_Run(ui_t *ui, ui_item_t *item, UI_ACTION Action)
 {
-    if (item == NULL) return; // 检查空指针，避免未定义行为
+    if(item == NULL)
+        return; // 检查空指针，避免未定义行为
 
     ui->action = Action; // 设置项目的状态为当前菜单状态
 
-    switch (item->itemType) // 根据项目类型执行不同的操作
+    switch(item->itemType) // 根据项目类型执行不同的操作
     {
     case UI_ITEM_DATA:
         if(item->element != NULL && item->element->data != NULL)
@@ -987,20 +1004,24 @@ static void Process_App_Run(ui_t *ui, ui_item_t *item, UI_ACTION Action)
             }
             else
             {
-                switch (item->element->data->dataType)
+                switch(item->element->data->dataType)
                 {
                 case UI_DATA_INT:
                 case UI_DATA_FLOAT:
-                    if (item->itemFunction == NULL)ParameterSetting_Widget(ui);
-                    else (item->itemFunction)(ui); // 执行项目的函数
+                    if(item->itemFunction == NULL)
+                        ParameterSetting_Widget(ui);
+                    else
+                        (item->itemFunction)(ui); // 执行项目的函数
                     if(ui->action == UI_ACTION_ENTER)
                     {
                         if(ui->nowItem->element->data->functionType == UI_DATA_FUNCTION_EXIT_EXECUTE)
                         {
-                            if(ui->nowItem->element->data->function != NULL)ui->nowItem->element->data->function(ui);
-                            #if ( UI_USE_FREERTOS == 1 )
-                            if(ui->nowItem->element->data->dataRootTask != NULL)vTaskResume(*ui->nowItem->element->data->dataRootTask);
-                            #endif
+                            if(ui->nowItem->element->data->function != NULL)
+                                ui->nowItem->element->data->function(ui);
+#if(UI_USE_FREERTOS == 1)
+                            if(ui->nowItem->element->data->dataRootTask != NULL)
+                                vTaskResume(*ui->nowItem->element->data->dataRootTask);
+#endif
                         }
                         Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
                     }
@@ -1019,41 +1040,49 @@ static void Process_App_Run(ui_t *ui, ui_item_t *item, UI_ACTION Action)
         Change_UIState(ui, UI_ITEM_EXIT);
         break;
     case UI_ITEM_LOOP_FUNCTION:
-        if (item->itemFunction != NULL)(item->itemFunction)(ui); // 执行项目的函数
-        if(ui->action == UI_ACTION_ENTER)Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
+        if(item->itemFunction != NULL)
+            (item->itemFunction)(ui); // 执行项目的函数
+        if(ui->action == UI_ACTION_ENTER)
+            Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
         break;
     case UI_ITEM_WAVE:
-        if (item->itemFunction == NULL)Wave_Widget(ui);
-        else (item->itemFunction)(ui); // 执行项目的函数
-        if(ui->action == UI_ACTION_ENTER)Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
+        if(item->itemFunction == NULL)
+            Wave_Widget(ui);
+        else
+            (item->itemFunction)(ui); // 执行项目的函数
+        if(ui->action == UI_ACTION_ENTER)
+            Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
         break;
     case UI_ITEM_WORD:
-        if (item->itemFunction == NULL)Text_Widget(ui);
-        else (item->itemFunction)(ui);
-        if(ui->action == UI_ACTION_ENTER)Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
+        if(item->itemFunction == NULL)
+            Text_Widget(ui);
+        else
+            (item->itemFunction)(ui);
+        if(ui->action == UI_ACTION_ENTER)
+            Change_UIState(ui, UI_ITEM_EXIT); // 如果项目状态为进入菜单，则改变菜单状态为函数退出
         break;
     case UI_ITEM_ONCE_FUNCTION:
-        if (item->itemFunction != NULL && item->functionState == false)
+        if(item->itemFunction != NULL && item->functionState == false)
         {
             (item->itemFunction)(ui); // 如果项目有函数，则执行该函数
             item->functionState = true;
         }
         item->functionState = false;
-        #if (UI_ONCEFUNCTION_TIP == 0)
+#if(UI_ONCEFUNCTION_TIP == 0)
         Change_UIState(ui, UI_ITEM_EXIT); // 改变菜单状态为函数退出
-        #endif
-        #if (UI_ONCEFUNCTION_TIP == 1)
+#endif
+#if(UI_ONCEFUNCTION_TIP == 1)
         // 执行完成后，弹窗提醒
-        if (Notifications(ui, 4, 12, UI_HOR_RES - 8, UI_VER_RES - 32))
+        if(Notifications(ui, 4, 12, UI_HOR_RES - 8, UI_VER_RES - 32))
         {
-            Disp_SendBuffer();
+            Disp_SendBuffer( );
         }
         if(ui->action != UI_ACTION_NONE)
         {
             item->functionState = false;
             Change_UIState(ui, UI_ITEM_EXIT); // 改变菜单状态为函数退出
         }
-        #endif
+#endif
         break;
     default:
         break; // 对未知类型不执行任何操作
@@ -1068,12 +1097,12 @@ static void Process_App_Run(ui_t *ui, ui_item_t *item, UI_ACTION Action)
  */
 void ui_loop(ui_t *ui)
 {
-    UI_ACTION Action = indevScan(); // 扫描按钮方向，确定菜单操作方向
-    if (ui->menuState == UI_PAGE_INIT && Action != UI_ACTION_NONE)
+    UI_ACTION Action = indevScan( ); // 扫描按钮方向，确定菜单操作方向
+    if(ui->menuState == UI_PAGE_INIT && Action != UI_ACTION_NONE)
     {
         ui->menuState = UI_PAGE_RUNING;
         // 初始化状态下，非空检查now_item并绘制当前菜单项
-        if (ui->nowItem != NULL)
+        if(ui->nowItem != NULL)
         {
             Draw_UI(ui, ui->nowItem->page.location, ui->nowItem, ui->nowItem);
         }
@@ -1084,51 +1113,52 @@ void ui_loop(ui_t *ui)
     }
     else
     {
-        switch (ui->menuState)
+        switch(ui->menuState)
         {
-            case UI_PAGE_INIT:break;
-            case UI_ITEM_RUNING:
-            case UI_ITEM_DRAWING:
-                // 在这两个状态下，处理应用程序运行逻辑
-                Process_App_Run(ui, ui->nowItem, Action);
-                if (ui->menuState == UI_ITEM_DRAWING)
-                {
-                    break; // 在绘制状态下，终止进一步流程执行
-                }
-            case UI_PAGE_RUNING:
-            case UI_ITEM_EXIT:
-            case UI_PAGE_DRAWING:
-                // 处理菜单运行、应用退出和菜单绘制状态
-                Process_UI_Run(ui, Action);
-                break;
+        case UI_PAGE_INIT:
+            break;
+        case UI_ITEM_RUNING:
+        case UI_ITEM_DRAWING:
+            // 在这两个状态下，处理应用程序运行逻辑
+            Process_App_Run(ui, ui->nowItem, Action);
+            if(ui->menuState == UI_ITEM_DRAWING)
+            {
+                break; // 在绘制状态下，终止进一步流程执行
+            }
+        case UI_PAGE_RUNING:
+        case UI_ITEM_EXIT:
+        case UI_PAGE_DRAWING:
+            // 处理菜单运行、应用退出和菜单绘制状态
+            Process_UI_Run(ui, Action);
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
     }
 }
 
 static void AnimationParam_Init(ui_animation_t *Ani)
 {
-    Ani->optionbar_ani.kp = 0.35f;
-    Ani->optionbar_ani.ki = 0.0f;
-    Ani->optionbar_ani.kd = 0.03f;
+    Ani->optionbar_ani.kp    = 0.35f;
+    Ani->optionbar_ani.ki    = 0.0f;
+    Ani->optionbar_ani.kd    = 0.03f;
 
-    Ani->cursor_ani.kp = 0.04f;
-    Ani->cursor_ani.ki = 0.01f;
-    Ani->cursor_ani.kd = 0.01f;
+    Ani->cursor_ani.kp       = 0.04f;
+    Ani->cursor_ani.ki       = 0.01f;
+    Ani->cursor_ani.kd       = 0.01f;
 
-    Ani->imagePage_ani.kp = 0.35f;
-    Ani->imagePage_ani.ki = 0.0f;
-    Ani->imagePage_ani.kd = 0.01f;
+    Ani->imagePage_ani.kp    = 0.35f;
+    Ani->imagePage_ani.ki    = 0.0f;
+    Ani->imagePage_ani.kd    = 0.01f;
 
-    Ani->textPage_ani.kp = 0.35f;
-    Ani->textPage_ani.ki = 0.0f;
-    Ani->textPage_ani.kd = 0.1f;
+    Ani->textPage_ani.kp     = 0.35f;
+    Ani->textPage_ani.ki     = 0.0f;
+    Ani->textPage_ani.kd     = 0.1f;
 
-    Ani->scrollbar_ani.kp = 0.35f;
-    Ani->scrollbar_ani.ki = 0.0f;
-    Ani->scrollbar_ani.kd = 0.03f;
+    Ani->scrollbar_ani.kp    = 0.35f;
+    Ani->scrollbar_ani.ki    = 0.0f;
+    Ani->scrollbar_ani.kd    = 0.03f;
 
     Ani->optionbarPos_ani.kp = 0.30f;
     Ani->optionbarPos_ani.ki = 0.0f;
@@ -1140,14 +1170,14 @@ void Create_UI(ui_t *ui, ui_item_t *item)
     Create_MenuTree(ui);
     Create_Parameter(ui);
     Create_Text(ui);
-    ui->textSpace = UI_TEXT_SPACE;
+    ui->textSpace  = UI_TEXT_SPACE;
     ui->imageSpace = UI_IMAGE_SPACE;
-    ui->headX = UI_PAGE_INIT_X;
-    ui->headY = UI_PAGE_INIT_Y;
-    ui->nowItem = item;
-    ui->oldItem = item;
-    ui->menuState = UI_PAGE_INIT;
-    ui->action = UI_ACTION_NONE;
-    ui->bgColor = 0;
+    ui->headX      = UI_PAGE_INIT_X;
+    ui->headY      = UI_PAGE_INIT_Y;
+    ui->nowItem    = item;
+    ui->oldItem    = item;
+    ui->menuState  = UI_PAGE_INIT;
+    ui->action     = UI_ACTION_NONE;
+    ui->bgColor    = 0;
     AnimationParam_Init(&ui->animation);
 }
