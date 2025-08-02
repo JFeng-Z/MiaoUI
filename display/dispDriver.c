@@ -75,7 +75,7 @@ void Disp_SendBuffer(void)
  * 
  * 说明：这个函数通过调用u8g2的设置函数，来更改当前OLED显示的字体。
  */
-void Disp_SetFont(const uint8_t  *font)
+void Disp_SetFont(const uint8_t *font)
 {
     // u8g2_SetFont(&u8g2, font); // 设置U8g2实例的字体
 }

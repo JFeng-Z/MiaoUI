@@ -29,14 +29,14 @@ TaskHandle_t SystemStateUpdateTask_Handle;
 QueueHandle_t WaveTest_Queue;
 
 /* Global Variable */
-int Wave_TestData;
+int  Wave_TestData;
 
 void WaveTest_Task(void *pvParameters)
 {
     int Wave_Data = 0;
     while(1)
     {
-        Wave_Data = rand()%600;
+        Wave_Data = rand( ) % 600;
         xQueueSend(WaveTest_Queue, &Wave_Data, 0);
         vTaskDelay(50);
     }
@@ -54,7 +54,8 @@ void SystemStateUpdate_Task(void *pvParameters)
 
 void ui_task(void *pvParameter)
 {
-    while (1) {
+    while(1)
+    {
         ui_loop(&ui);
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
@@ -62,11 +63,11 @@ void ui_task(void *pvParameter)
 
 void app_main(void)
 {
-    Button_Init();
-    Display_Init();
+    Button_Init( );
+    Display_Init( );
     MiaoUi_Setup(&ui);
-    xTaskCreate(ui_task, "ui", 1*2048, NULL, 5, &ui_task_handle);
+    xTaskCreate(ui_task, "ui", 1 * 2048, NULL, 5, &ui_task_handle);
     WaveTest_Queue = xQueueCreate(1, sizeof(int));
-    xTaskCreate(WaveTest_Task, "WaveTest", 1*2048, NULL, 4, &WaveTestTask_Handle);
-    xTaskCreate(SystemStateUpdate_Task, "SystemStateUpdate", 1*2048, NULL, 1, &SystemStateUpdateTask_Handle);
+    xTaskCreate(WaveTest_Task, "WaveTest", 1 * 2048, NULL, 4, &WaveTestTask_Handle);
+    xTaskCreate(SystemStateUpdate_Task, "SystemStateUpdate", 1 * 2048, NULL, 1, &SystemStateUpdateTask_Handle);
 }

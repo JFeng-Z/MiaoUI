@@ -28,7 +28,8 @@
 #define _PARAMETER_H_
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #include "lib/MiaoUI/ui_conf.h"
@@ -40,4 +41,4 @@ void Switch_Widget(ui_t *ui);
 }
 #endif
 
-#endif 
+#endif

@@ -45,142 +45,142 @@ ui_item_t Contrast_Item, Power_Item, MenuColor_Item, CursorAni_Item, Test_Item;
  */
 void Create_Parameter(ui_t *ui)
 {
-    static int Contrast = 255;
+    static int       Contrast = 255;
     static ui_data_t Contrast_data;
-    Contrast_data.name = "Contrast";
-    Contrast_data.ptr = &Contrast;
-    Contrast_data.function = Disp_SetContrast;
+    Contrast_data.name         = "Contrast";
+    Contrast_data.ptr          = &Contrast;
+    Contrast_data.function     = Disp_SetContrast;
     Contrast_data.functionType = UI_DATA_FUNCTION_STEP_EXECUTE;
-    Contrast_data.dataType = UI_DATA_INT;
-    Contrast_data.actionType = UI_DATA_ACTION_RW;
-    Contrast_data.max = 255;
-    Contrast_data.min = 0;
-    Contrast_data.step = 5;
+    Contrast_data.dataType     = UI_DATA_INT;
+    Contrast_data.actionType   = UI_DATA_ACTION_RW;
+    Contrast_data.max          = 255;
+    Contrast_data.min          = 0;
+    Contrast_data.step         = 5;
     static ui_element_t Contrast_element;
     Contrast_element.data = &Contrast_data;
     Create_element(&Contrast_Item, &Contrast_element);
 
-    static uint8_t power_off = false;
+    static uint8_t   power_off = false;
     static ui_data_t Power_switch_data;
-    Power_switch_data.ptr = &power_off;
-    Power_switch_data.function = Disp_SetPowerSave;
-    Power_switch_data.dataType = UI_DATA_SWITCH;
+    Power_switch_data.ptr        = &power_off;
+    Power_switch_data.function   = Disp_SetPowerSave;
+    Power_switch_data.dataType   = UI_DATA_SWITCH;
     Power_switch_data.actionType = UI_DATA_ACTION_RW;
     static ui_element_t Power_element;
     Power_element.data = &Power_switch_data;
     Create_element(&Power_Item, &Power_element);
 
-    #if ( UI_USE_FREERTOS == 1 )
+#if(UI_USE_FREERTOS == 1)
     extern QueueHandle_t WaveTest_Queue;
-    extern TaskHandle_t WaveTestTask_Handle;
-    #endif
-    extern int Wave_TestData;
+    extern TaskHandle_t  WaveTestTask_Handle;
+#endif
+    extern int       Wave_TestData;
     static ui_data_t Wave_data;
-    Wave_data.name = "Wave";
-    Wave_data.ptr = &Wave_TestData;
+    Wave_data.name     = "Wave";
+    Wave_data.ptr      = &Wave_TestData;
     Wave_data.dataType = UI_DATA_INT;
-    Wave_data.max = 600;
-    Wave_data.min = 0;
-    #if ( UI_USE_FREERTOS == 1 )
-    Wave_data.dataRootTask = &WaveTestTask_Handle;
+    Wave_data.max      = 600;
+    Wave_data.min      = 0;
+#if(UI_USE_FREERTOS == 1)
+    Wave_data.dataRootTask  = &WaveTestTask_Handle;
     Wave_data.dataRootQueue = &WaveTest_Queue;
-    #endif
+#endif
     static ui_element_t Wave_element;
     Wave_element.data = &Wave_data;
     Create_element(&Wave_Item, &Wave_element);
 
-    #if ( UI_USE_FREERTOS == 1 )
+#if(UI_USE_FREERTOS == 1)
     extern TaskHandle_t MPU6050UpdateTask_Handle;
-    static uint8_t PrintTask_State = true;
-    static ui_data_t PrintTask_switch_data;
-    PrintTask_switch_data.ptr = &PrintTask_State;
-    PrintTask_switch_data.dataType = UI_DATA_SWITCH;
-    PrintTask_switch_data.actionType = UI_DATA_ACTION_RW;
+    static uint8_t      PrintTask_State = true;
+    static ui_data_t    PrintTask_switch_data;
+    PrintTask_switch_data.ptr          = &PrintTask_State;
+    PrintTask_switch_data.dataType     = UI_DATA_SWITCH;
+    PrintTask_switch_data.actionType   = UI_DATA_ACTION_RW;
     PrintTask_switch_data.dataRootTask = &MPU6050UpdateTask_Handle;
     static ui_element_t PrintTask_element;
     PrintTask_element.data = &PrintTask_switch_data;
     Create_element(&MPUTaskState_Item, &PrintTask_element);
 
     extern SemaphoreHandle_t MPU6050Update_Mutex;
-    static int PrintTask_Levl = 1;
-    static ui_data_t PrintTask_Levl_data;
-    PrintTask_Levl_data.actionType = UI_DATA_ACTION_RW;
-    PrintTask_Levl_data.dataType = UI_DATA_INT;
-    PrintTask_Levl_data.name = "PrintTask_Levl";
-    PrintTask_Levl_data.ptr = &PrintTask_Levl;
-    PrintTask_Levl_data.max = 10;
-    PrintTask_Levl_data.min = 1;
-    PrintTask_Levl_data.step = 1;
-    PrintTask_Levl_data.functionType = UI_DATA_FUNCTION_EXIT_EXECUTE;
-    PrintTask_Levl_data.function = TaskLvel_Setting;
-    PrintTask_Levl_data.dataRootTask = &MPU6050UpdateTask_Handle;
+    static int               PrintTask_Levl = 1;
+    static ui_data_t         PrintTask_Levl_data;
+    PrintTask_Levl_data.actionType    = UI_DATA_ACTION_RW;
+    PrintTask_Levl_data.dataType      = UI_DATA_INT;
+    PrintTask_Levl_data.name          = "PrintTask_Levl";
+    PrintTask_Levl_data.ptr           = &PrintTask_Levl;
+    PrintTask_Levl_data.max           = 10;
+    PrintTask_Levl_data.min           = 1;
+    PrintTask_Levl_data.step          = 1;
+    PrintTask_Levl_data.functionType  = UI_DATA_FUNCTION_EXIT_EXECUTE;
+    PrintTask_Levl_data.function      = TaskLvel_Setting;
+    PrintTask_Levl_data.dataRootTask  = &MPU6050UpdateTask_Handle;
     PrintTask_Levl_data.dataRootMutex = &MPU6050Update_Mutex;
     static ui_element_t PrintTask_Levl_element;
     PrintTask_Levl_element.data = &PrintTask_Levl_data;
     Create_element(&MPUTaskLvel_Item, &PrintTask_Levl_element);
 
-    extern char FreeHeap[20];
+    extern char      FreeHeap[20];
     static ui_data_t SystemHeap_data;
-    SystemHeap_data.name = "FreeHeap";
-    SystemHeap_data.ptr = FreeHeap;
-    SystemHeap_data.dataType = UI_DATA_STRING;
+    SystemHeap_data.name       = "FreeHeap";
+    SystemHeap_data.ptr        = FreeHeap;
+    SystemHeap_data.dataType   = UI_DATA_STRING;
     SystemHeap_data.actionType = UI_DATA_ACTION_RO;
     static ui_element_t SystemHeap_element;
     SystemHeap_element.data = &SystemHeap_data;
     Create_element(&SystemHeap_Item, &SystemHeap_element);
-    #endif
+#endif
 
     static ui_data_t MenuColor_data;
-    MenuColor_data.name = "MenuColor";
-    MenuColor_data.ptr = &ui->bgColor;
-    MenuColor_data.dataType = UI_DATA_SWITCH;
+    MenuColor_data.name       = "MenuColor";
+    MenuColor_data.ptr        = &ui->bgColor;
+    MenuColor_data.dataType   = UI_DATA_SWITCH;
     MenuColor_data.actionType = UI_DATA_ACTION_RW;
     static ui_element_t MenuColor_element;
     MenuColor_element.data = &MenuColor_data;
     Create_element(&MenuColor_Item, &MenuColor_element);
 
     static ui_data_t CursorAni_data;
-    CursorAni_data.name = "CursorAni";
-    CursorAni_data.ptr = &ui->animation.cursor_ani.kp;
-    CursorAni_data.dataType = UI_DATA_FLOAT;
+    CursorAni_data.name       = "CursorAni";
+    CursorAni_data.ptr        = &ui->animation.cursor_ani.kp;
+    CursorAni_data.dataType   = UI_DATA_FLOAT;
     CursorAni_data.actionType = UI_DATA_ACTION_RW;
-    CursorAni_data.min = 0;
-    CursorAni_data.max = 10;
-    CursorAni_data.step = 0.1;
+    CursorAni_data.min        = 0;
+    CursorAni_data.max        = 10;
+    CursorAni_data.step       = 0.1;
     static ui_element_t CursorAni_element;
     CursorAni_element.data = &CursorAni_data;
     Create_element(&CursorAni_Item, &CursorAni_element);
 
-    float Pitch, Roll, Yaw;
+    float            Pitch, Roll, Yaw;
     static ui_data_t Pitch_data;
-    Pitch_data.name = "Pitch";
-    Pitch_data.ptr = &Pitch;
-    Pitch_data.dataType = UI_DATA_FLOAT;
+    Pitch_data.name       = "Pitch";
+    Pitch_data.ptr        = &Pitch;
+    Pitch_data.dataType   = UI_DATA_FLOAT;
     Pitch_data.actionType = UI_DATA_ACTION_RO;
-    Pitch_data.max = 360;
-    Pitch_data.min = -360;
+    Pitch_data.max        = 360;
+    Pitch_data.min        = -360;
     static ui_element_t Pitch_element;
     Pitch_element.data = &Pitch_data;
     Create_element(&Pitch_Item, &Pitch_element);
 
     static ui_data_t Roll_data;
-    Roll_data.name = "Roll";
-    Roll_data.ptr = &Roll;
-    Roll_data.dataType = UI_DATA_FLOAT;
+    Roll_data.name       = "Roll";
+    Roll_data.ptr        = &Roll;
+    Roll_data.dataType   = UI_DATA_FLOAT;
     Roll_data.actionType = UI_DATA_ACTION_RO;
-    Roll_data.max = 360;
-    Roll_data.min = -360;
+    Roll_data.max        = 360;
+    Roll_data.min        = -360;
     static ui_element_t Roll_element;
     Roll_element.data = &Roll_data;
     Create_element(&Roll_Item, &Roll_element);
 
     static ui_data_t Yaw_data;
-    Yaw_data.name = "Yaw";
-    Yaw_data.ptr = &Yaw;
-    Yaw_data.dataType = UI_DATA_FLOAT;
+    Yaw_data.name       = "Yaw";
+    Yaw_data.ptr        = &Yaw;
+    Yaw_data.dataType   = UI_DATA_FLOAT;
     Yaw_data.actionType = UI_DATA_ACTION_RO;
-    Yaw_data.max = 360;
-    Yaw_data.min = -360;
+    Yaw_data.max        = 360;
+    Yaw_data.min        = -360;
     static ui_element_t Yaw_element;
     Yaw_element.data = &Yaw_data;
     Create_element(&Yaw_Item, &Yaw_element);
@@ -194,19 +194,19 @@ void Create_Parameter(ui_t *ui)
 void Create_Text(ui_t *ui)
 {
     static ui_text_t github_text;
-    github_text.font = UI_FONT;
+    github_text.font      = UI_FONT;
     github_text.fontHight = UI_FONT_HIGHT;
     github_text.fontWidth = UI_FONT_WIDTH;
-    github_text.ptr = VERSION_PROJECT_LINK;
+    github_text.ptr       = VERSION_PROJECT_LINK;
     static ui_element_t github_element;
     github_element.text = &github_text;
     Create_element(&Github_Item, &github_element);
 
     static ui_text_t bilibili_text;
-    bilibili_text.font = UI_FONT;
+    bilibili_text.font      = UI_FONT;
     bilibili_text.fontHight = UI_FONT_HIGHT;
     bilibili_text.fontWidth = UI_FONT_WIDTH;
-    bilibili_text.ptr = "Could you trouble to give me a star? Thank you! Thank you! Thank you!";
+    bilibili_text.ptr       = "Could you trouble to give me a star? Thank you! Thank you! Thank you!";
     static ui_element_t bilibili_element;
     bilibili_element.text = &bilibili_text;
     Create_element(&Bilibili_Item, &bilibili_element);
@@ -219,6 +219,8 @@ void Create_Text(ui_t *ui)
  */
 void Create_MenuTree(ui_t *ui)
 {
+    /* ui树，此处禁用格式化 */
+    // clang-format off
     AddPage("[HomePage]", &Home_Page, UI_PAGE_ICON);
         AddItem("[HomePage]", UI_ITEM_ONCE_FUNCTION, logo_allArray[0], &HomeHead_Item, &Home_Page, NULL, Draw_Home);
         AddItem(" +System", UI_ITEM_PARENTS, logo_allArray[1], &System_Item, &Home_Page, &System_Page, NULL);
@@ -247,6 +249,7 @@ void Create_MenuTree(ui_t *ui)
         AddItem(" -This is a testing program", UI_ITEM_WORD, logo_allArray[4], &Bilibili_Item, &Home_Page, NULL, NULL);
         AddItem(" -Version", UI_ITEM_ONCE_FUNCTION, logo_allArray[5], &Version_Item, &Home_Page, NULL, Show_Version);
         AddItem(" -Wave", UI_ITEM_WAVE, logo_allArray[6], &Wave_Item, &Home_Page, NULL, NULL);
+    // clang-format on
 }
 
 void MiaoUi_Setup(ui_t *ui)

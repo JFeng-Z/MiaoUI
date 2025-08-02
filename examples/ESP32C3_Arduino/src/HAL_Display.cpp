@@ -1,7 +1,7 @@
 #include "HAL_Display.h"
 #include "U8g2lib.h"
 
-U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/U8X8_PIN_NONE);
 
 /**
  * 初始化显示设备。
@@ -13,7 +13,7 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 void HAL_dispInit(void)
 {
     // 初始化U8g2库，为OLED显示做准备
-    u8g2.begin();
+    u8g2.begin( );
 }
 
 /**
@@ -29,7 +29,7 @@ void HAL_dispInit(void)
  */
 void HAL_Disp_ClearBuffer(void)
 {
-    u8g2.clearBuffer();  // 清除OLED显示缓冲区的具体实现，使用u8g2库提供的函数。
+    u8g2.clearBuffer( ); // 清除OLED显示缓冲区的具体实现，使用u8g2库提供的函数。
 }
 
 /**
@@ -40,7 +40,7 @@ void HAL_Disp_ClearBuffer(void)
 void HAL_Disp_SendBuffer(void)
 {
     /* 将U8G2实例的缓冲区数据发送到OLED设备 */
-    u8g2.sendBuffer();
+    u8g2.sendBuffer( );
 }
 
 /**
@@ -50,7 +50,7 @@ void HAL_Disp_SendBuffer(void)
  * 
  * 说明：这个函数通过调用u8g2的设置函数，来更改当前OLED显示的字体。
  */
-void HAL_Disp_SetFont(const uint8_t  *font)
+void HAL_Disp_SetFont(const uint8_t *font)
 {
     u8g2.setFont(font);
 }
@@ -210,7 +210,7 @@ void HAL_Disp_SetPowerSave(ui_t *ui)
  */
 uint8_t HAL_Disp_GetBufferTileHeight(void)
 {
-    return u8g2.getBufferTileHeight();
+    return u8g2.getBufferTileHeight( );
 }
 
 /**
@@ -224,7 +224,7 @@ uint8_t HAL_Disp_GetBufferTileHeight(void)
  */
 uint8_t HAL_Disp_GetBufferTileWidth(void)
 {
-    return u8g2.getBufferTileWidth();
+    return u8g2.getBufferTileWidth( );
 }
 
 /**
@@ -238,7 +238,7 @@ uint8_t HAL_Disp_GetBufferTileWidth(void)
 uint8_t *HAL_Disp_GetBufferPtr(void)
 {
     // 调用u8g2库的函数获取显示缓冲区指针
-    return u8g2.getBufferPtr();
+    return u8g2.getBufferPtr( );
 }
 
 void HAL_Disp_SetClipWindow(uint16_t clip_x0, uint16_t clip_y0, uint16_t clip_x1, uint16_t clip_y1)
@@ -248,7 +248,7 @@ void HAL_Disp_SetClipWindow(uint16_t clip_x0, uint16_t clip_y0, uint16_t clip_x1
 
 void HAL_Disp_SetMaxClipWindow(void)
 {
-    u8g2.setMaxClipWindow();
+    u8g2.setMaxClipWindow( );
 }
 
 void HAL_Disp_SetBufferCurrTileRow(uint8_t row)

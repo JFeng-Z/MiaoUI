@@ -30,7 +30,7 @@
 UI_ACTION indevScan(void)
 {
     /* 放入你的按键扫描代码 */
-    switch (u8g_sdl_get_key())
+    switch(u8g_sdl_get_key( ))
     {
     case 'a':
         return UI_ACTION_UP;

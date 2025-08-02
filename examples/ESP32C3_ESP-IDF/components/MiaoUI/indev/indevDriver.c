@@ -30,5 +30,5 @@
 UI_ACTION indevScan(void)
 {
     /* 放入你的按键扫描代码 */
-    return Button_Scan();
+    return Button_Scan( );
 }

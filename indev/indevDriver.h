@@ -28,7 +28,8 @@
 #define _INDEVDRIVER_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #include "ui_conf.h"

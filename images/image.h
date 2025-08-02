@@ -19,10 +19,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #define _IMAGE_H_
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-extern const unsigned char* logo_allArray[];
+extern const unsigned char *logo_allArray[];
 
 #ifdef __cplusplus
 }
